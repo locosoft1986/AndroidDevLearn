@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewSwitcherTest" >
+	<ViewSwitcher android:id="@+id/viewswitcher"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" />
+
+	<Button
+	    android:id="@+id/buttonPrev"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentLeft="true"
+	    android:onClick="prev"
+	    android:text="&lt;" />
+	
+	<Button
+	    android:id="@+id/buttonReturn"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:onClick="prev"
+	    android:text="Return" />
+	
+	<Button
+	    android:id="@+id/buttonNext"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentRight="true"
+	    android:onClick="next"
+	    android:text="&gt;" />
+	
+	"
+
+
+</RelativeLayout>

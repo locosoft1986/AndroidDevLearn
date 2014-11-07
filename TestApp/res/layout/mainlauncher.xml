@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/startSwitcherTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="View Switcher"
+        android:onClick="onMenuClicked"
+         />
+    
+     <Button
+        android:id="@+id/fragmentPagerTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startSwitcherTest"
+        android:text="Fragment Pager1" 
+        android:onClick="onMenuClicked"
+        />
+
+    <Button
+        android:id="@+id/exitApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Exit"
+        android:onClick="onMenuClicked"
+         />
+
+
+
+</RelativeLayout>
