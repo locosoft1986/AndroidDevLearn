@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#b8c0c8" >
+
+    <RelativeLayout
+        android:id="@+id/account_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header" >
+
+        <TextView
+            android:id="@+id/account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_centerInParent="true"
+            android:ellipsize="middle"
+            android:gravity="center_horizontal"
+            android:singleLine="true"
+            android:text="账号管理"
+            android:textColor="#ffffffff"
+            android:textSize="22.0sp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/account_top"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="20.0dip"
+        android:layout_weight="1"
+        android:background="@drawable/panel_bg"
+        android:cacheColorHint="#00000000"
+        android:divider="@drawable/list_divider"
+        android:padding="5.0dip" />
+
+    <RelativeLayout
+        android:id="@+id/account_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_alignParentBottom="true"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/account_back_btn"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bottom_back_bg"
+            android:drawableTop="@drawable/btn_back_selector" />
+
+        <Button
+            android:id="@+id/account_tohome_btn"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bottom_home_bg"
+            android:drawableTop="@drawable/btn_home_selector" />
+
+        <LinearLayout
+            android:id="@+id/account_add_btn_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="35.0dip"
+            android:layout_toLeftOf="@id/account_tohome_btn"
+            android:layout_toRightOf="@id/account_back_btn"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/account_add_btn_selector"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="添加账号"
+                android:textColor="@color/bottom_button_text_selector"
+                android:textSize="16.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/account_bottom"
+        android:layout_marginBottom="40.0dip"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/user_default_headicon"
+            android:layout_width="120.0dip"
+            android:layout_height="78.0dip" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,5 @@
+    解决办法：
+    A:   分别执行：  iptables  -F
+                                  iptables  -X
+                                  service   iptables   save
+       B.  编辑/etc/sysconfig/selinux，会看到一个selinux=enable，如果是enable，改成disabled，然后一定要重启linux系统，这样应该就没有问题了
