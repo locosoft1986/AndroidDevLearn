@@ -59,7 +59,7 @@ class CommentServer extends Demos_App_Server
 
 		if ($commentList) {
 			$this->render('10000', 'Get comment list ok', array(
-				'Comment.list' => $commentList
+				'Comment.list' => $commentList //commentList = sets of { [index] => row_data}
 			));
 		}
 		$this->render('14010', 'Get comment list failed');
