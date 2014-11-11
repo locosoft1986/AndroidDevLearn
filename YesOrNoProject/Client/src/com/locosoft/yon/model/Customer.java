@@ -147,11 +147,11 @@ public class Customer extends BaseModel {
 		this.gendor = strGendor;
 	}
 	
-	public String getUType () {
+	public String getUtype () {
 		return this.utype;
 	}
 	
-	public void setUType (String strUType) {
+	public void setUtype (String strUType) {
 		this.utype = strUType;
 	}
 
