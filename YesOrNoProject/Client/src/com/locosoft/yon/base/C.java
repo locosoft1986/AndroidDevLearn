@@ -26,6 +26,13 @@ public final class C {
 
 	}
 	
+	public static final class logTag {
+		public static final String commonLog	=	"YonApp Log";
+		public static final String waring	=	"YonApp Warning";
+		public static final String critical	=	"YonApp Error";
+
+	}
+	
 	public static final class task {
 		public static final int postList			= 1001;
 		public static final int login				= 1002;

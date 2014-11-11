@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `quser` (
+CREATE TABLE IF NOT EXISTS `customer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,  
   `name` varchar(50) CHARACTER SET utf8 NOT NULL, -- user name for login
   `nickname` varchar(50) CHARACTER SET utf8 NOT NULL, -- user's nickname

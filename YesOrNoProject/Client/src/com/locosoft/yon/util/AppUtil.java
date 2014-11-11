@@ -24,9 +24,11 @@ import android.app.Service;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ParseException;
+import android.util.Log;
 
 import com.locosoft.yon.base.BaseMessage;
 import com.locosoft.yon.base.BaseModel;
+import com.locosoft.yon.base.C;
 import com.locosoft.yon.model.Customer;
 
 public class AppUtil {
@@ -160,6 +162,14 @@ public class AppUtil {
 		try {
 			for (String fieldName : fields) {
 				Field field = data.getClass().getDeclaredField(fieldName);
+				
+				
+				if (field == null) 
+				{
+					Log.e(C.logTag.critical, "Field name" + fieldName 
+							+ " in class reflection is not found! Class Name:" + data.getClass().toString());
+				}
+				
 				field.setAccessible(true); // have private to be accessable
 				map.put(fieldName, field.get(data));
 			}

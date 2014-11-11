@@ -6,26 +6,34 @@ public class Customer extends BaseModel {
 	
 	// model columns
 	public final static String COL_ID = "id";
-	public final static String COL_SID = "sid";
 	public final static String COL_NAME = "name";
+	public final static String COL_NICK = "nickname";
+	public final static String COL_FACE = "headface";
+	public final static String COL_AGE = "age";
+	public final static String COL_HOBBIES = "hobbies";
+	public final static String COL_PLACE = "place";
+	public final static String COL_COMMENTS = "comments";
+	public final static String COL_CTIME = "ctime";//create time of the user account
+	public final static String COL_BRAND = "brand";//phone brand
 	public final static String COL_PASS = "pass";
-	public final static String COL_SIGN = "sign";
-	public final static String COL_FACE = "face";
-	public final static String COL_FACEURL = "faceurl";
-	public final static String COL_BLOGCOUNT = "blogcount";
-	public final static String COL_FANSCOUNT = "fanscount";
-	public final static String COL_UPTIME = "uptime";
+	public final static String COL_GENDOR = "gendor";	
+	public final static String COL_UTYPE = "utype"; //user's type(0: common users, 1: admin)
+
 	
 	private String id;
-	private String sid;
 	private String name;
+	private String nickname;
+	private String headface;
+	private String age;
+	private String hobbies;
+	private String place;
+	private String comments;
+	private String ctime;
+	private String brand;
 	private String pass;
-	private String sign;
-	private String face;
-	private String faceurl;
-	private String blogcount;
-	private String fanscount;
-	private String uptime;
+	private String gendor;
+	private String utype;
+
 	
 	// default is no login
 	private boolean isLogin = false;
@@ -46,82 +54,107 @@ public class Customer extends BaseModel {
 		return this.id;
 	}
 	
-	public void setId (String id) {
-		this.id = id;
-	}
-	
-	public String getSid () {
-		return this.sid;
-	}
-	
-	public void setSid (String sid) {
-		this.sid = sid;
+	public void setId (String strId) {
+		this.id = strId;
 	}
 	
 	public String getName () {
 		return this.name;
 	}
 	
-	public void setName (String name) {
-		this.name = name;
+	public void setName (String strName) {
+		this.name = strName;
+	}
+	
+	public String getNickname () {
+		return this.nickname;
+	}
+	
+	public void setNickname (String strNikName) {
+		this.nickname = strNikName;
+	}
+	
+	public String getHeadface () {
+		return this.headface;
+	}
+	
+	public void setHeadface (String strFaceUrl) {
+		this.headface = strFaceUrl;
+	}
+	
+	public String getAge () {
+		return this.age;
+	}
+	
+	public void setAge (String strAge) {
+		this.age = strAge;
+	}
+	
+	
+	public String getHobbies () {
+		return this.hobbies;
+	}
+	
+	public void setHobbies (String strHobbies) {
+		this.hobbies = strHobbies;
+	}
+	
+	public String getPlace () {
+		return this.place;
+	}
+	
+	public void setPlace (String strPlace) {
+		this.place = strPlace;
+	}
+	
+	public String getComments () {
+		return this.comments;
+	}
+	
+	public void setComments (String strComments) {
+		this.comments = strComments;
+	}
+	
+	public String getCtime () {
+		return this.ctime;
+	}
+	
+	public void setCtime (String strCtime) {
+		this.ctime = strCtime;
+	}
+	
+	public String getBrand () {
+		return this.brand;
+	}
+	
+	public void setBrand (String strBrand) {
+		this.brand = strBrand;
 	}
 	
 	public String getPass () {
 		return this.pass;
 	}
 	
-	public void setPass (String pass) {
-		this.pass = pass;
+	public void setPass (String strPass) {
+		this.pass = strPass;
 	}
 	
-	public String getSign () {
-		return this.sign;
+	public String getGendor () {
+		return this.gendor;
 	}
 	
-	public void setSign (String sign) {
-		this.sign = sign;
+	public void setGendor (String strGendor) {
+		this.gendor = strGendor;
 	}
 	
-	public String getFace () {
-		return this.face;
+	public String getUType () {
+		return this.utype;
 	}
 	
-	public void setFace (String face) {
-		this.face = face;
+	public void setUType (String strUType) {
+		this.utype = strUType;
 	}
-	
-	public String getFaceurl () {
-		return this.faceurl;
-	}
-	
-	public void setFaceurl (String faceurl) {
-		this.faceurl = faceurl;
-	}
-	
-	public String getUptime () {
-		return this.uptime;
-	}
-	
-	public void setUptime (String uptime) {
-		this.uptime = uptime;
-	}
-	
-	public String getBlogcount () {
-		return this.blogcount;
-	}
-	
-	public void setBlogcount (String blogcount) {
-		this.blogcount = blogcount;
-	}
-	
-	public String getFanscount () {
-		return this.fanscount;
-	}
-	
-	public void setFanscount (String fanscount) {
-		this.fanscount = fanscount;
-	}
-	
+
 	public Boolean getLogin () {
 		return this.isLogin;
 	}
