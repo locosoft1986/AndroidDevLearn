@@ -61,10 +61,6 @@ public class AppClient {
 	private void initClient (String url) {
 		// initialize API URL
 		this.apiUrl = C.api.base + url;
-		String apiSid = AppUtil.getSessionId();
-		if (apiSid != null && apiSid.length() > 0) {
-			this.apiUrl += "?sid=" + apiSid;
-		}
 		// set client timeout
 		httpParams = new BasicHttpParams();
 		HttpConnectionParams.setConnectionTimeout(httpParams, timeoutConnection);

@@ -15,6 +15,6 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=gbk AUTO_INCREMENT=42 ;
 
-INSERT INTO `quser` (`id`, `name`, `nickname`,`headface`, `age`, `hobbies`, `place`, `comments`, `ctime`, `brand`, `pass`, `gendor`, `utype`) VALUES
+INSERT INTO `customer` (`id`, `name`, `nickname`,`headface`, `age`, `hobbies`, `place`, `comments`, `ctime`, `brand`, `pass`, `gendor`, `utype`) VALUES
 (0, 'admin', 'Admin1', 'a1.jpg', '18', 'Hobby test1', 'Shanghai', 'User comments test1', '2014-05-16', NULL, 'admin', '1', '1'),
 (1, 'locosoft', 'Locosoft', 'a1.jpg', '18', 'Hobby test1', 'SH', 'User introduchtion test1', '2014-05-16', NULL, 'admin', '1', '1');

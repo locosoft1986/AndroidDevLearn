@@ -78,7 +78,7 @@ public class BaseMessage {
 				// initialize
 				String jsonKey = it.next();
 				String modelName = getModelName(jsonKey);
-				String modelClassName = "com.app.demos.model." + modelName;
+				String modelClassName = "com.locosoft.yon.model." + modelName;
 				JSONArray modelJsonArray = jsonObject.optJSONArray(jsonKey);
 				// JSONObject
 				if (modelJsonArray == null) {

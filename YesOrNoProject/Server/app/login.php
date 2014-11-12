@@ -2,34 +2,30 @@
 
 require_once 'render.php';
 
-$value = $_POST['value'];
-	  
-$obj=json_decode($value);
-	  
-$uname = $obj->uname;
+ 
+$uname = $_POST['name'];	
+$upassword = $_POST['pass'];
 	
-$upassword = $obj->upassword;
-	
-$link = mysql_connect('localhost','root','root');
-	mysql_select_db('mysql',$link);
+$link = mysql_connect('localhost','root','');
+mysql_select_db('yonDB',$link);
 mysql_query('set names utf8');
 	  
-$mselect="select * from `quser` where uname = '".$uname."'";
+$mselect="select * from `customer` where name = '".$uname."'";
   
 $res = mysql_query($mselect);
-   
+  
 $row   = mysql_num_rows($res); 
 if(!empty($row)){
 
-	$mselect="select * from `quser` where uname = '".$uname."' and upass = '".$upassword."'";
+	$mselect="select * from `customer` where name = '".$uname."' and pass = '".$upassword."'";
   
 	$res = mysql_query($mselect);
    
 	$row   = mysql_num_rows($res); 
 	if(!empty($row)){
-		$arr = array();
+		$arr;
 		 while($row = mysql_fetch_assoc($res)){
-			$arr[] = $row;
+			$arr = $row;
 		 }
 		 renderJson('10000', 'Login ok', array(
 					'Customer' => $arr

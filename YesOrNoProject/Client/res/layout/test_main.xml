@@ -8,9 +8,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TestMainActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/startLoginTest"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:text="Login Test"
+        android:onClick="onMenuClicked"
+    />
+    <TextView 
+        android:id="@+id/testCurrentUser"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/startLoginTest" 
+		android:text="" />
+    
+    
+    
+    <Button
+        android:id="@+id/exitTestApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Exit"
+        android:onClick="onMenuClicked"
+         />
 
 </RelativeLayout>

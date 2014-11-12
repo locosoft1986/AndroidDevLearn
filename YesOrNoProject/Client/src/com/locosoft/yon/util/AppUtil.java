@@ -119,14 +119,7 @@ public class AppUtil {
 		return service.getSharedPreferences("com.app.demos.sp.global", Context.MODE_PRIVATE);
 	}
 	
-	/////////////////////////////////////////////////////////////////////////////////
-	// 业务逻辑
-	
-	/* fetch Session Id */
-	static public String getSessionId () {
-		Customer customer = Customer.getInstance();
-		return customer.getSid();
-	}
+
 	
 	/* fetch Message object*/
 	static public BaseMessage getMessage (String jsonStr) throws Exception {

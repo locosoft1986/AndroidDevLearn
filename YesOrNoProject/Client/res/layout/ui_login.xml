@@ -60,7 +60,7 @@
 			android:id="@+id/app_login_btn_submit" 
 			android:text="@string/login_submit" 
 			android:layout_width="90dip" 
-			android:layout_height="35dip" 
+			android:layout_height="40dip" 
 			android:layout_alignParentRight="true"
 			android:layout_centerVertical="true"
 			android:focusable="true"/>

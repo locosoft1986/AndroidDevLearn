@@ -13,16 +13,16 @@ public final class C {
 	
 	public static final class api {
 		public static final String base				= "http://10.0.16.43/yon";
-		public static final String postList			= "/posts";
-		public static final String login			= "/login";
-		public static final String register			= "/register";
-		public static final String faceAdd 			= "/faceAdd";
-		public static final String postCreate		= "/postCreate";
-		public static final String commentList		= "/commentList";
-		public static final String commentCreate	= "/commentCreate";
-		public static final String customerView		= "/customerView";
-		public static final String customerEdit		= "/customerEdit";
-		public static final String notice			= "/notice";
+		public static final String postList			= "/posts.php";
+		public static final String login			= "/login.php";
+		public static final String register			= "/register.php";
+		public static final String faceAdd 			= "/faceAdd.php";
+		public static final String postCreate		= "/postCreate.php";
+		public static final String commentList		= "/commentList.php";
+		public static final String commentCreate	= "/commentCreate.php";
+		public static final String customerView		= "/customerView.php";
+		public static final String customerEdit		= "/customerEdit.php";
+		public static final String notice			= "/notice.php";
 
 	}
 	

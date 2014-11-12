@@ -5,25 +5,32 @@ import com.locosoft.yon.util.AppCache;
 import com.locosoft.yon.util.AppUtil;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.SimpleAdapter.ViewBinder;
 
-public class BaseUi extends Activity {
+public class BaseUi extends Fragment {
 	
 	protected BaseApp app;
 	protected BaseHandler handler;
 	protected BaseTaskPool taskPool;
 	protected boolean showLoadBar = false;
 	protected boolean showDebugMsg = true;
+	
+	// Called when the Fragment is attached to its parent Activity.
+	@Override
+	public void onAttach(Activity activity) {
+	super.onAttach(activity);
+	// Get a reference to the parent Activity.
+	// init application
+			
+	}
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -35,19 +42,20 @@ public class BaseUi extends Activity {
 		this.handler = new BaseHandler(this);
 		// init task pool
 		this.taskPool = new BaseTaskPool(this);
-		// init application
-		this.app = (BaseApp) this.getApplicationContext();
+		this.app = (BaseApp) this.getActivity().getApplicationContext();
 	}
 	
+
+	
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		// debug memory
 		debugMemory("onResume");
 	}
 	
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		super.onPause();
 		// debug memory
 		debugMemory("onPause");
@@ -71,43 +79,43 @@ public class BaseUi extends Activity {
 	// util method
 	
 	public void toast (String msg) {
-		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+		Toast.makeText(this.getActivity(), msg, Toast.LENGTH_SHORT).show();
 	}
 	
 	public void overlay (Class<?> classObj) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        intent.setClass(this, classObj);
+        intent.setClass(this.getActivity(), classObj);
         startActivity(intent);
 	}
 	
 	public void overlay (Class<?> classObj, Bundle params) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        intent.setClass(this, classObj);
+        intent.setClass(this.getActivity(), classObj);
         intent.putExtras(params);
         startActivity(intent);
 	}
 	
 	public void forward (Class<?> classObj) {
 		Intent intent = new Intent();
-		intent.setClass(this, classObj);
+		intent.setClass(this.getActivity(), classObj);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		this.startActivity(intent);
-		this.finish();
+		this.getActivity().finish();
 	}
 	
 	public void forward (Class<?> classObj, Bundle params) {
 		Intent intent = new Intent();
-		intent.setClass(this, classObj);
+		intent.setClass(this.getActivity(), classObj);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent.putExtras(params);
 		this.startActivity(intent);
-		this.finish();
+		this.getActivity().finish();
 	}
 	
 	public Context getContext () {
-		return this;
+		return this.getActivity();
 	}
 	
 	public BaseHandler getHandler () {
@@ -119,7 +127,7 @@ public class BaseUi extends Activity {
 	}
 	
 	public LayoutInflater getLayout () {
-		return (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		return (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
 	public View getLayout (int layoutId) {
@@ -161,7 +169,7 @@ public class BaseUi extends Activity {
 	// logic method
 	
 	public void doFinish () {
-		this.finish();
+		this.getActivity().finish();
 	}
 	
 	public void doLogout () {
@@ -285,20 +293,5 @@ public class BaseUi extends Activity {
 		}
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////
-	// common classes
-	
-	public class BitmapViewBinder implements ViewBinder {
-		// 
-		@Override
-		public boolean setViewValue(View view, Object data, String textRepresentation) {
-			if ((view instanceof ImageView) & (data instanceof Bitmap)) {
-				ImageView iv = (ImageView) view;
-				Bitmap bm = (Bitmap) data;
-				iv.setImageBitmap(bm);
-				return true;
-			}
-			return false;
-		}
-	}
+
 }

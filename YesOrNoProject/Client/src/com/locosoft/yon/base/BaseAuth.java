@@ -6,10 +6,7 @@ public class BaseAuth {
 	
 	static public boolean isLogin () {
 		Customer customer = Customer.getInstance();
-		if (customer.getLogin() == true) {
-			return true;
-		}
-		return false;
+		return customer.getLogin();
 	}
 	
 	static public void setLogin (Boolean status) {

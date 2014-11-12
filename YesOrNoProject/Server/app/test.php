@@ -11,7 +11,7 @@ $link = mysql_connect('localhost','root','');
 mysql_select_db('yonDB',$link);
 mysql_query('set names utf8');
 	  
-$mselect="select * from `quser`";
+$mselect="select * from `customer`";
   
 $res = mysql_query($mselect);
     
@@ -19,7 +19,7 @@ $arr = array();
 
 while($row = mysql_fetch_assoc($res))
 {
-	array_push($arr, $row);
+	$arr[]= $row;
 
 }
 	  
