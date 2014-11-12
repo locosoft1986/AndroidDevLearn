@@ -8,9 +8,10 @@ function renderJson($code, $message, $result = '')
                     // Object list
                     if (strpos($name, '.list')) {
                             $model = trim(str_replace('.list', '', $name));
-                            foreach ((array) $data as $k => $v) {
-                                    $result[$name][$k] = $v;
-                            }
+                            //foreach ((array) $data as $k => $v) {
+                                    //$result[$name][$k] = $v;
+                            //}
+							$result[$model] = $data;
                     // Object
                     } else {
                             $model = trim($name);
