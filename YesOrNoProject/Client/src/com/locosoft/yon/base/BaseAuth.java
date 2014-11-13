@@ -24,11 +24,12 @@ public class BaseAuth {
 		customer.setHobbies(mc.getHobbies());
 		customer.setPlace(mc.getPlace());
 		customer.setComments(mc.getComments());
-		customer.setCtime(mc.getCtime());
+		customer.setCTime(mc.getCTime());
 		customer.setBrand(mc.getBrand());
 		customer.setPass(mc.getPass());
 		customer.setGendor(mc.getGendor());
-		customer.setUtype(mc.getUtype());
+		customer.setPhoneNum(mc.getPhoneNum());
+		customer.setUType(mc.getUType());
 	}
 	
 	static public Customer getCustomer () {

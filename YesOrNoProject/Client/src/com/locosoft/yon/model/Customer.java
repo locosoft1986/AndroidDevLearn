@@ -17,6 +17,7 @@ public class Customer extends BaseModel {
 	public final static String COL_BRAND = "brand";//phone brand
 	public final static String COL_PASS = "pass";
 	public final static String COL_GENDOR = "gendor";	
+	public final static String COL_PHONENUM = "phonenum";	
 	public final static String COL_UTYPE = "utype"; //user's type(0: common users, 1: admin)
 
 	
@@ -32,6 +33,7 @@ public class Customer extends BaseModel {
 	private String brand;
 	private String pass;
 	private String gendor;
+	private String phonenum;
 	private String utype;
 
 	
@@ -115,11 +117,11 @@ public class Customer extends BaseModel {
 		this.comments = strComments;
 	}
 	
-	public String getCtime () {
+	public String getCTime () {
 		return this.ctime;
 	}
 	
-	public void setCtime (String strCtime) {
+	public void setCTime (String strCtime) {
 		this.ctime = strCtime;
 	}
 	
@@ -147,11 +149,19 @@ public class Customer extends BaseModel {
 		this.gendor = strGendor;
 	}
 	
-	public String getUtype () {
+	public String getPhoneNum () {
+		return this.phonenum;
+	}
+	
+	public void setPhoneNum (String strPhoneNum) {
+		this.phonenum = strPhoneNum;
+	}
+	
+	public String getUType () {
 		return this.utype;
 	}
 	
-	public void setUtype (String strUType) {
+	public void setUType (String strUType) {
 		this.utype = strUType;
 	}
 

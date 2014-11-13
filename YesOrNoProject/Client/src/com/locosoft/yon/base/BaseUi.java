@@ -1,6 +1,8 @@
 package com.locosoft.yon.base;
 
 import java.util.HashMap;
+
+import com.locosoft.yon.R;
 import com.locosoft.yon.util.AppCache;
 import com.locosoft.yon.util.AppUtil;
 
@@ -20,6 +22,7 @@ public class BaseUi extends Fragment {
 	protected BaseApp app;
 	protected BaseHandler handler;
 	protected BaseTaskPool taskPool;
+	protected View rootView;
 	protected boolean showLoadBar = false;
 	protected boolean showDebugMsg = true;
 	
@@ -143,14 +146,14 @@ public class BaseUi extends Fragment {
 	}
 	
 	public void showLoadBar () {
-		//this.findViewById(R.id.main_load_bar).setVisibility(View.VISIBLE);
-		//this.findViewById(R.id.main_load_bar).bringToFront();
+		rootView.findViewById(R.id.main_load_bar).setVisibility(View.VISIBLE);
+		rootView.findViewById(R.id.main_load_bar).bringToFront();
 		showLoadBar = true;
 	}
 	
 	public void hideLoadBar () {
 		if (showLoadBar) {
-			//this.findViewById(R.id.main_load_bar).setVisibility(View.GONE);
+			rootView.findViewById(R.id.main_load_bar).setVisibility(View.GONE);
 			showLoadBar = false;
 		}
 	}

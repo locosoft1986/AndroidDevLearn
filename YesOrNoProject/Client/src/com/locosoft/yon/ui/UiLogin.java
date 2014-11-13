@@ -5,9 +5,13 @@ import java.util.HashMap;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
@@ -35,17 +39,36 @@ public class UiLogin extends BaseUi {
 			ViewGroup container, Bundle savedInstanceState)
 	{	
 	
-		View view = inflater.inflate(R.layout.ui_login, null);
+		rootView = inflater.inflate(R.layout.ui_login, null);
 		
 		// remember password
-		mEditName = (EditText) view.findViewById(R.id.app_login_edit_name);
-		mEditPass = (EditText) view.findViewById(R.id.app_login_edit_pass);
-		mCheckBox = (CheckBox) view.findViewById(R.id.app_login_check_remember);
+		mEditName = (EditText) rootView.findViewById(R.id.app_login_edit_name);
+		mEditPass = (EditText) rootView.findViewById(R.id.app_login_edit_pass);
+		mCheckBox = (CheckBox) rootView.findViewById(R.id.app_login_check_remember);
 		settings = this.getActivity().getPreferences(Context.MODE_PRIVATE);
 		if (settings.getBoolean("remember", false)) {
 			mCheckBox.setChecked(true);
 			mEditName.setText(settings.getString("username", ""));
+			mEditName.setGravity(Gravity.LEFT);
+			
+			
 			mEditPass.setText(settings.getString("password", ""));
+			mEditPass.setInputType(InputType.TYPE_CLASS_TEXT 
+					| InputType.TYPE_TEXT_VARIATION_PASSWORD);
+			mEditPass.setGravity(Gravity.LEFT);
+		}
+		else
+		{
+			mEditName.setText(
+					getContext().getResources().getString(R.string.login_username));			
+			mEditName.setGravity(Gravity.CENTER);
+			
+			mEditPass.setText(
+					getContext().getResources().getString(R.string.login_password));
+			
+			mEditPass.setInputType(InputType.TYPE_CLASS_TEXT);
+			mEditPass.setGravity(Gravity.CENTER);
+			
 		}
 		
 		// remember checkbox
@@ -74,12 +97,96 @@ public class UiLogin extends BaseUi {
 					case R.id.app_login_btn_submit : 
 						doTaskLogin();
 						break;
+					case R.id.app_login_btn_signup:
+						break;
+					case R.id.app_login_btn_forgot:
+						break;
 				}
 			}
 		};
-		view.findViewById(R.id.app_login_btn_submit).setOnClickListener(mOnClickListener);
+		rootView.findViewById(R.id.app_login_btn_submit).setOnClickListener(mOnClickListener);
+		rootView.findViewById(R.id.app_login_btn_signup).setOnClickListener(mOnClickListener);
+		rootView.findViewById(R.id.app_login_btn_forgot).setOnClickListener(mOnClickListener);
 		
-		return view;
+		
+		final EditText loginName = mEditName;
+		final EditText loginPass = mEditPass;
+		
+		OnFocusChangeListener mOnFocusChangeListener = new OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus)
+			{
+				switch (v.getId()) {
+				case R.id.app_login_edit_name : {
+						String name = loginName.getText().toString().trim();
+						
+						if(hasFocus) {
+							if(name.isEmpty() 
+									|| name.equalsIgnoreCase(
+											getContext().getResources().getString(R.string.login_username))) 
+							{
+								loginName.setText("");
+								
+							}
+							loginName.setGravity(Gravity.LEFT);
+						}
+						else {
+							if(name.isEmpty()) 
+							{
+								loginName.setText(
+										getContext().getResources().getString(R.string.login_username));
+								
+								loginName.setGravity(Gravity.CENTER);
+								
+							}
+							else
+							{							
+								loginName.setGravity(Gravity.LEFT);
+							}
+						}
+						break;
+					}					
+				case R.id.app_login_edit_pass:	{
+					String pass = loginPass.getText().toString().trim();
+					
+					if(hasFocus) {
+						if(pass.isEmpty() 
+								|| pass.equalsIgnoreCase(
+										getContext().getResources().getString(R.string.login_password))) 
+						{
+							loginPass.setText("");
+							loginPass.setInputType(InputType.TYPE_CLASS_TEXT 
+									| InputType.TYPE_TEXT_VARIATION_PASSWORD);
+							
+						}
+						loginPass.setGravity(Gravity.LEFT);
+					}
+					else {
+						if(pass.isEmpty()) 
+						{
+							loginPass.setText(
+									getContext().getResources().getString(R.string.login_password));
+							
+							loginPass.setInputType(InputType.TYPE_CLASS_TEXT);
+							loginPass.setGravity(Gravity.CENTER);
+							
+						}
+						else
+						{							
+							loginPass.setGravity(Gravity.LEFT);
+						}
+					}
+						break;
+					}
+
+			}
+			}
+		};
+		
+		loginName.setOnFocusChangeListener(mOnFocusChangeListener);
+		loginPass.setOnFocusChangeListener(mOnFocusChangeListener);
+		
+		return rootView;
 	}
 	
 	private void doTaskLogin() {
@@ -112,12 +219,13 @@ public class UiLogin extends BaseUi {
 					if (customer.getName() != null) {
 						BaseAuth.setCustomer(customer);
 						BaseAuth.setLogin(true);
-					// login fail
-					} /*else {
-						BaseAuth.setCustomer(customer); // set sid
+					// login fail logic in the case that we might use MVC server framework
+					// such as zend framework for php	
+					} else {
+						BaseAuth.setCustomer(customer); 
 						BaseAuth.setLogin(false);
 						toast(this.getString(R.string.msg_loginfail));
-					}*/
+					}
 				} catch (Exception e) {
 					//e.printStackTrace();
 					BaseAuth.setLogin(false);
