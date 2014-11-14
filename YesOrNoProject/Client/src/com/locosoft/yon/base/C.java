@@ -11,6 +11,7 @@ public final class C {
 		public static final String images			= base + "/images";
 	}
 	
+	
 	public static final class api {
 		public static final String base				= "http://10.0.16.43/yon";
 		public static final String postList			= "/posts.php";
@@ -30,6 +31,15 @@ public final class C {
 		public static final String commonLog	=	"YonApp Log";
 		public static final String waring	=	"YonApp Warning";
 		public static final String critical	=	"YonApp Error";
+
+	}
+	
+	public static final class custmerVail {
+		public static final int username_min	=	5;
+		public static final int username_max	=	50;
+		public static final int password_min	=	5;
+		public static final int password_max	=	112;
+	
 
 	}
 	

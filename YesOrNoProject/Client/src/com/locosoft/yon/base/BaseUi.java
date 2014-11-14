@@ -8,6 +8,7 @@ import com.locosoft.yon.util.AppUtil;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ public class BaseUi extends Fragment {
 	protected View rootView;
 	protected boolean showLoadBar = false;
 	protected boolean showDebugMsg = true;
+	protected ProgressDialog loadingDialog;
+
 	
 	// Called when the Fragment is attached to its parent Activity.
 	@Override
@@ -32,7 +35,13 @@ public class BaseUi extends Fragment {
 	super.onAttach(activity);
 	// Get a reference to the parent Activity.
 	// init application
-			
+
+		loadingDialog = new ProgressDialog(this.getContext(), 
+				R.style.com_locosoft_yon_theme_dialog);
+		loadingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		loadingDialog.setCancelable(false);
+		loadingDialog.setCanceledOnTouchOutside(false);
+
 	}
 	
 	/** Called when the activity is first created. */
@@ -46,6 +55,8 @@ public class BaseUi extends Fragment {
 		// init task pool
 		this.taskPool = new BaseTaskPool(this);
 		this.app = (BaseApp) this.getActivity().getApplicationContext();
+		
+		
 	}
 	
 
@@ -146,14 +157,13 @@ public class BaseUi extends Fragment {
 	}
 	
 	public void showLoadBar () {
-		rootView.findViewById(R.id.main_load_bar).setVisibility(View.VISIBLE);
-		rootView.findViewById(R.id.main_load_bar).bringToFront();
+		loadingDialog.show();
 		showLoadBar = true;
 	}
 	
 	public void hideLoadBar () {
 		if (showLoadBar) {
-			rootView.findViewById(R.id.main_load_bar).setVisibility(View.GONE);
+			loadingDialog.hide();
 			showLoadBar = false;
 		}
 	}

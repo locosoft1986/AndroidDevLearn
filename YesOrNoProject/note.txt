@@ -1,0 +1,10 @@
+	public CustomerTextFieldFocusListener(Context context,
+			int defaultString,
+			int actualInputType,
+			CustomerTextFilter filter)
+			
+			
+R.string.login_username
+R.string.login_password
+			
+			InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD

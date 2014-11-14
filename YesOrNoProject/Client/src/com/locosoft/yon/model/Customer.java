@@ -34,6 +34,7 @@ public class Customer extends BaseModel {
 	private String pass;
 	private String gendor;
 	private String phonenum;
+	private String email;
 	private String utype;
 
 	
@@ -155,6 +156,14 @@ public class Customer extends BaseModel {
 	
 	public void setPhoneNum (String strPhoneNum) {
 		this.phonenum = strPhoneNum;
+	}
+	
+	public String getEmail () {
+		return this.email;
+	}
+	
+	public void setEmail (String strEmail) {
+		this.email = strEmail;
 	}
 	
 	public String getUType () {

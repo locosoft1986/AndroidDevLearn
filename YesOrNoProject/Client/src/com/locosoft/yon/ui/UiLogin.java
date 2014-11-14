@@ -2,18 +2,18 @@ package com.locosoft.yon.ui;
 
 import java.util.HashMap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -25,14 +25,27 @@ import com.locosoft.yon.base.BaseService;
 import com.locosoft.yon.base.BaseUi;
 import com.locosoft.yon.base.C;
 import com.locosoft.yon.model.Customer;
+import com.locosoft.yon.util.CustomerTextFieldFocusListener;
+import com.locosoft.yon.util.CustomerTextFilter;
+import com.locosoft.yon.util.OnTextLengthChangedListener;
 //import com.locosoft.yon.service.NoticeService;
 
 public class UiLogin extends BaseUi {
 
 	private EditText mEditName;
+	private CustomerTextFilter mTextFilter;
 	private EditText mEditPass;
 	private CheckBox mCheckBox;
 	private SharedPreferences settings;
+	
+	
+	@Override
+	public void onAttach(Activity activity) 
+	{
+		super.onAttach(activity);	
+		mTextFilter = new CustomerTextFilter();
+
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, 
@@ -44,18 +57,55 @@ public class UiLogin extends BaseUi {
 		// remember password
 		mEditName = (EditText) rootView.findViewById(R.id.app_login_edit_name);
 		mEditPass = (EditText) rootView.findViewById(R.id.app_login_edit_pass);
+		final Button submitBtn = (Button) rootView.findViewById(R.id.app_login_btn_submit);
+		submitBtn.setEnabled(false);
+		
+		final EditText loginName = mEditName;
+		final EditText loginPass = mEditPass;
+		
+		final OnTextLengthChangedListener textLengthChangedListener 
+			= new  OnTextLengthChangedListener()
+			{
+				@Override
+				public void onTextLengthChanged()
+				{
+					if(loginName.length() >= C.custmerVail.username_min
+							&& loginPass.length() >= C.custmerVail.password_min)
+					{
+						submitBtn.setEnabled(true);
+						
+					}
+					else
+					{
+						submitBtn.setEnabled(false);
+					}
+				}
+			};	
+
+		mTextFilter.setTextLengthChangedListener(textLengthChangedListener);
+		
+		mEditName.addTextChangedListener(mTextFilter);
+		mEditPass.addTextChangedListener(mTextFilter);
+		
 		mCheckBox = (CheckBox) rootView.findViewById(R.id.app_login_check_remember);
+		
+		
 		settings = this.getActivity().getPreferences(Context.MODE_PRIVATE);
 		if (settings.getBoolean("remember", false)) {
 			mCheckBox.setChecked(true);
 			mEditName.setText(settings.getString("username", ""));
-			mEditName.setGravity(Gravity.LEFT);
-			
+			mEditName.setGravity(Gravity.LEFT);		
 			
 			mEditPass.setText(settings.getString("password", ""));
 			mEditPass.setInputType(InputType.TYPE_CLASS_TEXT 
 					| InputType.TYPE_TEXT_VARIATION_PASSWORD);
 			mEditPass.setGravity(Gravity.LEFT);
+			
+			if(mEditName.length() >= C.custmerVail.username_min
+					&& mEditPass.length() >= C.custmerVail.password_min)
+			{
+				submitBtn.setEnabled(true);
+			}
 		}
 		else
 		{
@@ -68,9 +118,11 @@ public class UiLogin extends BaseUi {
 			
 			mEditPass.setInputType(InputType.TYPE_CLASS_TEXT);
 			mEditPass.setGravity(Gravity.CENTER);
-			
+
+			submitBtn.setEnabled(false);
 		}
 		
+
 		// remember checkbox
 		mCheckBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
 			@Override
@@ -108,90 +160,29 @@ public class UiLogin extends BaseUi {
 		rootView.findViewById(R.id.app_login_btn_signup).setOnClickListener(mOnClickListener);
 		rootView.findViewById(R.id.app_login_btn_forgot).setOnClickListener(mOnClickListener);
 		
-		
-		final EditText loginName = mEditName;
-		final EditText loginPass = mEditPass;
-		
-		OnFocusChangeListener mOnFocusChangeListener = new OnFocusChangeListener() {
-			@Override
-			public void onFocusChange(View v, boolean hasFocus)
-			{
-				switch (v.getId()) {
-				case R.id.app_login_edit_name : {
-						String name = loginName.getText().toString().trim();
-						
-						if(hasFocus) {
-							if(name.isEmpty() 
-									|| name.equalsIgnoreCase(
-											getContext().getResources().getString(R.string.login_username))) 
-							{
-								loginName.setText("");
-								
-							}
-							loginName.setGravity(Gravity.LEFT);
-						}
-						else {
-							if(name.isEmpty()) 
-							{
-								loginName.setText(
-										getContext().getResources().getString(R.string.login_username));
-								
-								loginName.setGravity(Gravity.CENTER);
-								
-							}
-							else
-							{							
-								loginName.setGravity(Gravity.LEFT);
-							}
-						}
-						break;
-					}					
-				case R.id.app_login_edit_pass:	{
-					String pass = loginPass.getText().toString().trim();
-					
-					if(hasFocus) {
-						if(pass.isEmpty() 
-								|| pass.equalsIgnoreCase(
-										getContext().getResources().getString(R.string.login_password))) 
-						{
-							loginPass.setText("");
-							loginPass.setInputType(InputType.TYPE_CLASS_TEXT 
-									| InputType.TYPE_TEXT_VARIATION_PASSWORD);
-							
-						}
-						loginPass.setGravity(Gravity.LEFT);
-					}
-					else {
-						if(pass.isEmpty()) 
-						{
-							loginPass.setText(
-									getContext().getResources().getString(R.string.login_password));
-							
-							loginPass.setInputType(InputType.TYPE_CLASS_TEXT);
-							loginPass.setGravity(Gravity.CENTER);
-							
-						}
-						else
-						{							
-							loginPass.setGravity(Gravity.LEFT);
-						}
-					}
-						break;
-					}
 
-			}
-			}
-		};
+
 		
-		loginName.setOnFocusChangeListener(mOnFocusChangeListener);
-		loginPass.setOnFocusChangeListener(mOnFocusChangeListener);
+		loginName.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
+					this.getContext(),
+					R.string.login_username,
+					InputType.TYPE_CLASS_TEXT,
+					mTextFilter
+				));
+		loginPass.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
+				this.getContext(),
+				R.string.login_password,
+				InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD,
+				mTextFilter
+			));
 		
 		return rootView;
 	}
 	
 	private void doTaskLogin() {
-		app.setLong(System.currentTimeMillis());
+		
 		if (mEditName.length() > 0 && mEditPass.length() > 0) {
+			app.setLong(System.currentTimeMillis());
 			HashMap<String, String> urlParams = new HashMap<String, String>();
 			urlParams.put("name", mEditName.getText().toString());
 			urlParams.put("pass", mEditPass.getText().toString());
@@ -200,6 +191,19 @@ public class UiLogin extends BaseUi {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (mCheckBox.isChecked())
+		{
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putString("username", mEditName.getText().toString());
+			editor.putString("password", mEditPass.getText().toString());
+			editor.commit();
 		}
 	}
 	

@@ -16,11 +16,9 @@ $mselect="select * from `customer`";
 $res = mysql_query($mselect);
     
 $arr = array();
-
 while($row = mysql_fetch_assoc($res))
 {
 	$arr[]= $row;
-
 }
 	  
 if ($arr) {
@@ -29,5 +27,4 @@ if ($arr) {
                 'Comment.list' => $arr //$arr = sets of { [index] => row_data}
         ));
 }
-
  ?>

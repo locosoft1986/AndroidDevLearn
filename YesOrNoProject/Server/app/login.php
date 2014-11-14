@@ -1,7 +1,5 @@
 <?php
-
 require_once 'render.php';
-
  
 $uname = $_POST['name'];	
 $upassword = $_POST['pass'];
@@ -16,7 +14,6 @@ $res = mysql_query($mselect);
   
 $row   = mysql_num_rows($res); 
 if(!empty($row)){
-
 	$mselect="select * from `customer` where name = '".$uname."' and pass = '".$upassword."'";
   
 	$res = mysql_query($mselect);
@@ -32,7 +29,5 @@ if(!empty($row)){
 				));
 	}
 }
-
 renderJson('14001', 'Login failed');
-
 ?>
