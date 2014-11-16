@@ -6,28 +6,28 @@ $uname = 'locosoft';
 $upassword = 'admin';
 	
 
-$con = mysqli_connect('localhost','root','', 'yonDB');
+$con = new mysqli('localhost','root','', 'yonDB');
 
-mysqli_query('set names utf8');
+$con->query('set names utf8');
 
 	  
 
 $sql="select * from customer where name=?";
-$stmt = mysqli_prepare($con, $sql);
-mysqli_stmt_bind_param($stmt, 's', $uname);
-mysqli_stmt_execute($stmt);
+$stmt = $con->prepare($sql);
+$stmt->bind_param('s', $uname);
+$stmt->execute();
 
-$result = mysqli_stmt_get_result($stmt);
+$result = $stmt->get_result();
 
 
 $arr = null;
-while($row = mysqli_fetch_assoc($result))
+while($row = $result->fetch_assoc())
 {
     $arr= $row;
 }
 
 
-mysqli_free_result($result);
+$result->free();
 	  
 if ($arr) {
 	
