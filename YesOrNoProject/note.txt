@@ -1,10 +1,6 @@
-	public CustomerTextFieldFocusListener(Context context,
-			int defaultString,
-			int actualInputType,
-			CustomerTextFilter filter)
-			
-			
-R.string.login_username
-R.string.login_password
-			
-			InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD
+rpm -Uvh epel-release-7-2.noarch.rpm
+rpm -Uvh remi-release-7.rpm
+
+yum remove php-mysql
+
+yum --enablerepo=remi,remi-test install php php-mysqlnd
