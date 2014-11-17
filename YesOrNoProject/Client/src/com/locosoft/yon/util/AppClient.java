@@ -90,9 +90,9 @@ public class AppClient {
 		} catch (ConnectTimeoutException e) {
 			throw new Exception(C.err.network);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw new Exception(C.err.serverDown);
 		}
-		return null;
 	}
 	
 	public String post (HashMap urlParams) throws Exception {
@@ -125,9 +125,9 @@ public class AppClient {
 		} catch (ConnectTimeoutException e) {
 			throw new Exception(C.err.network);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw new Exception(C.err.serverDown);
 		}
-		return null;
 	}
 	
 	private HttpGet headerFilter (HttpGet httpGet) {

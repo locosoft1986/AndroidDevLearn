@@ -39,6 +39,8 @@ public final class C {
 		public static final int username_max	=	50;
 		public static final int password_min	=	5;
 		public static final int password_max	=	112;
+		public static final int cellphone_min	=	5;
+		public static final int cellphone_max	=	50;
 	
 
 	}
@@ -58,8 +60,14 @@ public final class C {
 	
 	public static final class err {
 		public static final String network			= "network fault ";
+		public static final String serverDown		= "Server Unresponse ";
 		public static final String message			= "message error¯¯";
 		public static final String jsonFormat		= "message format incorrect¯¯";
+	}
+	
+	public static final class retCode {
+		public static final String retDone			= "10000";
+		public static final String retFail		= "14001";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////

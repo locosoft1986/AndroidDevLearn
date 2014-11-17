@@ -1,27 +1,34 @@
 <?php
 require_once 'render.php';
+require_once 'UniversalConnect.php';
  
-$uname = $_POST['name'];	
-$upassword = $_POST['pass'];
+//$uname = $_POST['name'];	
+//$upassword = $_POST['pass'];
+$uname = 'locosoft';
+$upassword = 'admin';
 	
-$link = mysql_connect('localhost','root','');
-mysql_select_db('yonDB',$link);
-mysql_query('set names utf8');
+$con = UniversalConnect::Instance()->doConnect();
 	  
-$mselect="select * from `customer` where name = '".$uname."'";
+$sql = "select * from `customer` where name = ?";
   
-$res = mysql_query($mselect);
+$stmt = $con->prepare($sql);
+$stmt->bind_param('s', $uname);
+$stmt->execute();
+
+$result = $stmt->get_result();
   
-$row   = mysql_num_rows($res); 
-if(!empty($row)){
-	$mselect="select * from `customer` where name = '".$uname."' and pass = '".$upassword."'";
+if(!empty($result->num_rows)){
+	$sql="select * from `customer` where name = ? and pass = ?";
   
-	$res = mysql_query($mselect);
+	$stmt = $con->prepare($sql);
+	$stmt->bind_param('ss', $uname, $upassword);
+	$stmt->execute();
    
-	$row   = mysql_num_rows($res); 
-	if(!empty($row)){
-		$arr;
-		 while($row = mysql_fetch_assoc($res)){
+	$res = $stmt->get_result();
+	
+	if(!empty($res->num_rows)){
+		$arr = null;
+		 while($row = $res->fetch_assoc()){
 			$arr = $row;
 		 }
 		 renderJson('10000', 'Login ok', array(

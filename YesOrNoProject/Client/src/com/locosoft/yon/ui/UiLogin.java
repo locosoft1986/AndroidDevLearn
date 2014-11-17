@@ -163,13 +163,13 @@ public class UiLogin extends BaseUi {
 
 
 		
-		loginName.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
+		mEditName.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
 					this.getContext(),
 					R.string.login_username,
 					InputType.TYPE_CLASS_TEXT,
 					mTextFilter
 				));
-		loginPass.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
+		mEditPass.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
 				this.getContext(),
 				R.string.login_password,
 				InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD,
