@@ -3,8 +3,12 @@ package com.locosoft.yon.ui;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.locosoft.yon.R;
-import com.locosoft.yon.base.BaseAuth;
 import com.locosoft.yon.base.BaseMessage;
 import com.locosoft.yon.base.BaseUi;
 import com.locosoft.yon.base.C;
-import com.locosoft.yon.model.Customer;
 import com.locosoft.yon.util.CustomerTextFieldFocusListener;
 import com.locosoft.yon.util.CustomerTextFilter;
 import com.locosoft.yon.util.OnTextLengthChangedListener;
@@ -30,6 +32,8 @@ public class UiSignup extends BaseUi {
 	private EditText mEditPass;
 	private EditText mEditConfirmPass;
 	private EditText mEditCellphone;
+	private AlertDialog.Builder mSignupOkAlertBuilder;
+	private AlertDialog mSignupOkAlert;
 	
 	
 	@Override
@@ -58,7 +62,7 @@ public class UiSignup extends BaseUi {
 		final EditText signupName = mEditName;
 		final EditText signupPass = mEditPass;
 		final EditText confirmPass = mEditConfirmPass;
-		final EditText cellphone = mEditConfirmPass;
+		final EditText cellphone = mEditCellphone;
 		
 		final OnTextLengthChangedListener textLengthChangedListener 
 			= new  OnTextLengthChangedListener()
@@ -96,7 +100,7 @@ public class UiSignup extends BaseUi {
 			public void onClick(View v) {
 				switch (v.getId()) {
 					case R.id.app_signup_btn_submit : 
-						doTaskLogin();
+						doTaskSignup();
 						break;
 
 				}
@@ -132,12 +136,40 @@ public class UiSignup extends BaseUi {
 				mTextFilter
 			));
 		
+		
+		mSignupOkAlertBuilder = new AlertDialog.Builder(this.getContext());
+		mSignupOkAlertBuilder.setCancelable(false);
+		mSignupOkAlertBuilder.setMessage(
+				this.getContext()
+				.getResources()
+				.getString(R.string.msg_signupok));
+        
+		mSignupOkAlertBuilder.setPositiveButton(
+				this.getContext()
+					.getResources()
+					.getString(R.string.btn_confirm)
+				, new DialogInterface.OnClickListener() {
+			
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+
+						submitBtn.setEnabled(false);
+						dialog.dismiss();
+						doFinish();
+					}
+				}
+        		
+        );
+        
+        
 		return rootView;
 	}
 	
-	private void doTaskLogin() {
+
+	
+	private void doTaskSignup() {
 		
-		if (mEditName.length() > 0 && mEditPass.length() > 0) {
+		if (mEditPass.getText().toString().equals(mEditConfirmPass.getText().toString())) {
 			app.setLong(System.currentTimeMillis());
 			HashMap<String, String> urlParams = new HashMap<String, String>();
 			urlParams.put("name", mEditName.getText().toString());
@@ -148,6 +180,18 @@ public class UiSignup extends BaseUi {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		else
+		{
+			String eString = 
+					this.getString(R.string.msg_signuppasserror
+			);
+			ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
+			SpannableStringBuilder ssbuilder 
+				= new SpannableStringBuilder(eString);
+			
+			ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
+			mEditConfirmPass.setError(ssbuilder);
 		}
 	}
 	
@@ -164,11 +208,22 @@ public class UiSignup extends BaseUi {
 				if(C.retCode.retDone.equalsIgnoreCase(
 						message.getCode()))
 				{
-					toast(this.getString(R.string.msg_signupok));
-					doFinish ();
+					mSignupOkAlert = mSignupOkAlertBuilder.create();
+					mSignupOkAlert.show();
+					
 				}
 				else
 				{
+					String eString = 
+							this.getString(R.string.msg_signupfail
+					);
+					ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
+					SpannableStringBuilder ssbuilder 
+						= new SpannableStringBuilder(eString);
+					
+					ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
+					mEditName.setError(ssbuilder);
+					
 					toast(this.getString(R.string.msg_signupfail));
 				}
 				break;

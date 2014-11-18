@@ -1,14 +1,13 @@
 <?php
 require_once 'render.php';
+require_once 'DBConnect.php';
    
 $uname = 'locosoft';
 	
 $upassword = 'admin';
 	
 
-$con = new mysqli('localhost','root','', 'yonDB');
-
-$con->query('set names utf8');
+$con = DatabaseConnect();
 
 	  
 
@@ -28,7 +27,8 @@ while($row = $result->fetch_assoc())
 
 
 $result->free();
-	  
+DatabaseClose($con);
+
 if ($arr) {
 	
         renderJson('10000', 'Get comment list ok', array(

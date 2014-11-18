@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `brand` varchar(50) CHARACTER SET utf8 DEFAULT NULL, -- the brand name of the user's phone
   `pass` varchar(112) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `gendor` int(11) DEFAULT '1',
-  `phonenum` int(11) DEFAULT '0',
+  `phonenum` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8 DEFAULT '',
   `utype` int(11) DEFAULT '0', -- user's type(0: common users, 1: admin)
   PRIMARY KEY (`id`)

@@ -1,6 +1,7 @@
 package com.locosoft.yon.util;
 
 
+import android.R;
 import android.content.Context;
 import android.text.InputType;
 import android.view.Gravity;
@@ -37,6 +38,7 @@ public class CustomerTextFieldFocusListener implements OnFocusChangeListener {
 			{
 				view.setText("");
 				view.setInputType(mActualInputType);
+				view.setTextColor(mContext.getResources().getColor(R.color.black));
 			}
 			view.setGravity(Gravity.LEFT);
 			
@@ -52,11 +54,13 @@ public class CustomerTextFieldFocusListener implements OnFocusChangeListener {
 				
 				view.setGravity(Gravity.CENTER);
 				view.setInputType(InputType.TYPE_CLASS_TEXT);
+				view.setTextColor(mContext.getResources().getColor(R.color.darker_gray));
 				
 			}
 			else
 			{							
 				view.setGravity(Gravity.LEFT);
+				view.setTextColor(mContext.getResources().getColor(R.color.black));
 			}
 		}
 	}

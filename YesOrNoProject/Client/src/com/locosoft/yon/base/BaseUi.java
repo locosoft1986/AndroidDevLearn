@@ -89,6 +89,13 @@ public class BaseUi extends Fragment {
 		debugMemory("onStop");
 	}
 	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		// debug memory
+		debugMemory("onDestroy");
+	}
+	
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	// util method
 	

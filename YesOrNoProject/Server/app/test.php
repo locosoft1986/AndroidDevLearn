@@ -1,13 +1,13 @@
 <?php
 require_once 'render.php';
-require_once 'UniversalConnect.php';
+require_once 'DBConnect.php';
 
 $uname = 'locosoft';
 	
 $upassword = 'admin';
 	
 
-$con = UniversalConnect::Instance()->doConnect();
+$con = DatabaseConnect();
 
 	  
 
@@ -28,6 +28,7 @@ while($row = $result->fetch_assoc())
 
 
 $result->free();
+DatabaseClose($con);
 	  
 if ($arr) {
 	

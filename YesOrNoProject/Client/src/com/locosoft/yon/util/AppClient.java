@@ -90,7 +90,7 @@ public class AppClient {
 		} catch (ConnectTimeoutException e) {
 			throw new Exception(C.err.network);
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			throw new Exception(C.err.serverDown);
 		}
 	}
@@ -125,7 +125,7 @@ public class AppClient {
 		} catch (ConnectTimeoutException e) {
 			throw new Exception(C.err.network);
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			throw new Exception(C.err.serverDown);
 		}
 	}

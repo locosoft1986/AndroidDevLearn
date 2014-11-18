@@ -24,9 +24,9 @@
 		    android:textSize="9pt" 
 			android:layout_width="match_parent" 
 			android:layout_height="wrap_content" 
-			android:textAppearance="?android:attr/textAppearanceLarge" 			
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:hint="@string/hint_username" 
 			android:text="@string/login_username" 
-
 			/>
 	</RelativeLayout>
 	<RelativeLayout 
@@ -41,6 +41,7 @@
 			android:inputType="text" 
 			android:textSize="9pt" 
 			android:textAppearance="?android:attr/textAppearanceLarge" 
+			android:hint="@string/hint_password"
 			android:text="@string/login_password" 
 			 
 			/>
