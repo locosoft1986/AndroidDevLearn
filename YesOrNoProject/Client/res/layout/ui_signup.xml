@@ -27,7 +27,7 @@
 			android:textAppearance="?android:attr/textAppearanceLarge" 
 			android:hint="@string/hint_username"			
 			android:text="@string/login_username" 
-
+			android:textColor="@color/dark_gray"
 			/>
 	</RelativeLayout>
 	<RelativeLayout 
@@ -44,7 +44,7 @@
 			android:textAppearance="?android:attr/textAppearanceLarge" 
 			android:hint="@string/hint_password"
 			android:text="@string/login_password" 
-			 
+			android:textColor="@color/dark_gray"
 			/>
 	</RelativeLayout>
 	<RelativeLayout 
@@ -61,7 +61,7 @@
 			android:textAppearance="?android:attr/textAppearanceLarge" 
 			android:hint="@string/hint_passconfirm"
 			android:text="@string/signup_confirm_pass" 
-			 
+			android:textColor="@color/dark_gray"
 			/>
 	</RelativeLayout>
 
@@ -78,7 +78,9 @@
 		    android:hint="@string/hint_cellphone"
 		    android:text="@string/signup_cellphone"
 		    android:textAppearance="?android:attr/textAppearanceLarge"
-		    android:textSize="9pt" />
+		    android:textSize="9pt" 
+		    android:textColor="@color/dark_gray"
+		    />
 
 	</RelativeLayout>
 	

@@ -95,12 +95,14 @@ public class UiLogin extends BaseUi {
 		if (settings.getBoolean("remember", false)) {
 			mCheckBox.setChecked(true);
 			mEditName.setText(settings.getString("username", ""));
-			mEditName.setGravity(Gravity.LEFT);		
+			mEditName.setGravity(Gravity.LEFT);	
+			mEditName.setTextColor(this.getContext().getResources().getColor(R.color.black));
 			
 			mEditPass.setText(settings.getString("password", ""));
 			mEditPass.setInputType(InputType.TYPE_CLASS_TEXT 
 					| InputType.TYPE_TEXT_VARIATION_PASSWORD);
 			mEditPass.setGravity(Gravity.LEFT);
+			mEditPass.setTextColor(this.getContext().getResources().getColor(R.color.black));
 			
 			if(mEditName.length() >= C.custmerVail.username_min
 					&& mEditPass.length() >= C.custmerVail.password_min)
@@ -113,12 +115,14 @@ public class UiLogin extends BaseUi {
 			mEditName.setText(
 					getContext().getResources().getString(R.string.login_username));			
 			mEditName.setGravity(Gravity.CENTER);
+			mEditName.setTextColor(this.getContext().getResources().getColor(R.color.dark_gray));
 			
 			mEditPass.setText(
 					getContext().getResources().getString(R.string.login_password));
 			
 			mEditPass.setInputType(InputType.TYPE_CLASS_TEXT);
 			mEditPass.setGravity(Gravity.CENTER);
+			mEditPass.setTextColor(this.getContext().getResources().getColor(R.color.dark_gray));
 
 			submitBtn.setEnabled(false);
 		}
