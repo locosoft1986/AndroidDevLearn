@@ -24,6 +24,7 @@ public final class C {
 		public static final String customerView		= "/customerView.php";
 		public static final String customerEdit		= "/customerEdit.php";
 		public static final String notice			= "/notice.php";
+		public static final String getSms			= "/sms.php";
 
 	}
 	
@@ -41,7 +42,10 @@ public final class C {
 		public static final int password_max	=	112;
 		public static final int cellphone_min	=	5;
 		public static final int cellphone_max	=	50;
-	
+		public static final int smscode_min		=	5;
+		public static final int smscode_max		=	10;
+		public static final int smscode_max_time=	300;//300s = 5min
+		public static final int smscode_wait_time=	60;//60s
 
 	}
 	
@@ -56,6 +60,7 @@ public final class C {
 		public static final int customerView		= 1008;		
 		public static final int customerEdit		= 1009;
 		public static final int notice				= 1010;
+		public static final int getSms				= 1011;
 	}
 	
 	public static final class err {
@@ -67,7 +72,9 @@ public final class C {
 	
 	public static final class retCode {
 		public static final String retDone			= "10000";
-		public static final String retFail		= "14001";
+		public static final String retFail			= "14001";
+		public static final String retSignupName	= "14002";
+		public static final String retSignupPhone 	= "14003";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////

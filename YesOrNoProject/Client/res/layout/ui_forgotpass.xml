@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+   
+   	<TextView 
+		android:layout_width="wrap_content" 
+		android:textAppearance="?android:attr/textAppearanceLarge" 
+		android:layout_height="wrap_content" 
+		android:layout_gravity="center_horizontal" 
+		android:text="@string/forgot_title" 
+		android:layout_margin="20dip" 
+		android:textSize="10pt"
+	/>
+    	
+   	<EditText
+        android:id="@+id/app_forgot_cellphone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_cellphone"
+        android:textSize="9pt" 
+		android:textColor="@color/dark_gray"
+		android:inputType="text|phone"
+	/>
+    	    
+	<RelativeLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" >
+
+	    <EditText
+	        android:id="@+id/app_forgot_verlicode"
+	        android:hint="@string/hint_smscode"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_toLeftOf="@+id/app_forgot_btn_get_sms"
+	        android:textSize="9pt" 
+		    android:textColor="@color/dark_gray"
+		    android:layout_marginTop="5dip"
+		    android:inputType="number"
+ 		/>
+
+	    <Button
+	        android:id="@+id/app_forgot_btn_get_sms"
+	        android:layout_width="150dip"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignParentTop="true"
+	        android:text="@string/forgot_get_sms"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:textSize="9pt" 
+	    />
+
+	</RelativeLayout>
+	
+    <Button
+        android:id="@+id/app_forgot_btn_reset_pass"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_reset_pass"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="10pt" 
+        android:layout_marginTop="15dip"
+    />
+</LinearLayout>

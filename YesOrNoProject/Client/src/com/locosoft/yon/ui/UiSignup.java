@@ -184,8 +184,7 @@ public class UiSignup extends BaseUi {
 		else
 		{
 			String eString = 
-					this.getString(R.string.msg_signuppasserror
-			);
+					this.getString(R.string.msg_signuppasserror);
 			ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
 			SpannableStringBuilder ssbuilder 
 				= new SpannableStringBuilder(eString);
@@ -212,20 +211,46 @@ public class UiSignup extends BaseUi {
 					mSignupOkAlert.show();
 					
 				}
-				else
+				else 
 				{
-					String eString = 
-							this.getString(R.string.msg_signupfail
-					);
+					String eString;
 					ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
-					SpannableStringBuilder ssbuilder 
+
+					
+					if(C.retCode.retSignupName.equalsIgnoreCase(
+							message.getCode()))
+					{
+
+						eString = 
+								this.getString(R.string.msg_signupfail);
+						
+						SpannableStringBuilder ssbuilder 
+							= new SpannableStringBuilder(eString);
+					
+						ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
+					
+						mEditName.setError(ssbuilder);
+						
+
+					}
+					else
+					{
+						eString = 
+								this.getString(R.string.msg_signupfailphone);
+						
+						SpannableStringBuilder ssbuilder 
 						= new SpannableStringBuilder(eString);
+				
+						ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
 					
-					ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
-					mEditName.setError(ssbuilder);
+						mEditCellphone.setError(ssbuilder);
+						
+					}
 					
-					toast(this.getString(R.string.msg_signupfail));
+					toast(eString);
 				}
+					
+
 				break;
 		}
 	}

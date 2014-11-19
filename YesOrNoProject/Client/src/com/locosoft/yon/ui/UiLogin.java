@@ -28,6 +28,7 @@ import com.locosoft.yon.model.Customer;
 import com.locosoft.yon.util.CustomerTextFieldFocusListener;
 import com.locosoft.yon.util.CustomerTextFilter;
 import com.locosoft.yon.util.OnTextLengthChangedListener;
+import com.locosoft.yon.activity.ForgotPassActivity;
 import com.locosoft.yon.activity.SignupActivity;
 //import com.locosoft.yon.service.NoticeService;
 
@@ -158,6 +159,7 @@ public class UiLogin extends BaseUi {
 						overlay(SignupActivity.class);
 						break;
 					case R.id.app_login_btn_forgot:
+						overlay(ForgotPassActivity.class);
 						break;
 				}
 			}

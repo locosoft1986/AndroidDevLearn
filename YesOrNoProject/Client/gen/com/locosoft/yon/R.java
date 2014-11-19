@@ -41,30 +41,37 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090010;
-        public static final int app_login_btn_forgot=0x7f090009;
-        public static final int app_login_btn_signup=0x7f09000a;
-        public static final int app_login_btn_submit=0x7f090008;
-        public static final int app_login_check_remember=0x7f090007;
-        public static final int app_login_edit_name=0x7f090005;
-        public static final int app_login_edit_pass=0x7f090006;
-        public static final int app_signup_btn_submit=0x7f09000f;
-        public static final int app_signup_edit_cellphone=0x7f09000e;
-        public static final int app_signup_edit_confirm_pass=0x7f09000d;
-        public static final int app_signup_edit_name=0x7f09000b;
-        public static final int app_signup_edit_pass=0x7f09000c;
-        public static final int app_ui_login=0x7f090000;
-        public static final int app_ui_signup=0x7f090001;
-        public static final int exitTestApp=0x7f090004;
-        public static final int startLoginTest=0x7f090002;
-        public static final int testCurrentUser=0x7f090003;
+        public static final int action_settings=0x7f090015;
+        public static final int app_forgot_btn_get_sms=0x7f090008;
+        public static final int app_forgot_btn_reset_pass=0x7f090009;
+        public static final int app_forgot_cellphone=0x7f090006;
+        public static final int app_forgot_verlicode=0x7f090007;
+        public static final int app_login_btn_forgot=0x7f09000e;
+        public static final int app_login_btn_signup=0x7f09000f;
+        public static final int app_login_btn_submit=0x7f09000d;
+        public static final int app_login_check_remember=0x7f09000c;
+        public static final int app_login_edit_name=0x7f09000a;
+        public static final int app_login_edit_pass=0x7f09000b;
+        public static final int app_signup_btn_submit=0x7f090014;
+        public static final int app_signup_edit_cellphone=0x7f090013;
+        public static final int app_signup_edit_confirm_pass=0x7f090012;
+        public static final int app_signup_edit_name=0x7f090010;
+        public static final int app_signup_edit_pass=0x7f090011;
+        public static final int app_ui_forgotpass=0x7f090000;
+        public static final int app_ui_login=0x7f090001;
+        public static final int app_ui_signup=0x7f090002;
+        public static final int exitTestApp=0x7f090005;
+        public static final int startLoginTest=0x7f090003;
+        public static final int testCurrentUser=0x7f090004;
     }
     public static final class layout {
-        public static final int login_activity=0x7f030000;
-        public static final int signup_activity=0x7f030001;
-        public static final int test_main=0x7f030002;
-        public static final int ui_login=0x7f030003;
-        public static final int ui_signup=0x7f030004;
+        public static final int forgotpass_activity=0x7f030000;
+        public static final int login_activity=0x7f030001;
+        public static final int signup_activity=0x7f030002;
+        public static final int test_main=0x7f030003;
+        public static final int ui_forgotpass=0x7f030004;
+        public static final int ui_login=0x7f030005;
+        public static final int ui_signup=0x7f030006;
     }
     public static final class menu {
         public static final int test_main=0x7f080000;
@@ -82,32 +89,43 @@ public final class R {
         /**  settings 
          */
         public static final int config_sign=0x7f060007;
-        public static final int edit_submit=0x7f060014;
+        public static final int edit_submit=0x7f06001a;
+        public static final int forgot_get_sms=0x7f060026;
+        public static final int forgot_resend=0x7f060028;
+        public static final int forgot_reset_pass=0x7f060027;
+        public static final int forgot_title=0x7f060025;
         public static final int hello_world=0x7f060002;
-        public static final int hint_cellphone=0x7f060019;
-        public static final int hint_passconfirm=0x7f060018;
-        public static final int hint_password=0x7f060017;
-        public static final int hint_username=0x7f060016;
-        public static final int login_forgot=0x7f060011;
-        public static final int login_password=0x7f06000f;
-        public static final int login_remember=0x7f060010;
-        public static final int login_signup=0x7f060012;
-        public static final int login_submit=0x7f060013;
+        public static final int hint_cellphone=0x7f06001f;
+        public static final int hint_passconfirm=0x7f06001e;
+        public static final int hint_password=0x7f06001d;
+        public static final int hint_smscode=0x7f060020;
+        public static final int hint_username=0x7f06001c;
+        public static final int login_forgot=0x7f060017;
+        public static final int login_password=0x7f060015;
+        public static final int login_remember=0x7f060016;
+        public static final int login_signup=0x7f060018;
+        public static final int login_submit=0x7f060019;
         /**  UI labels
          */
-        public static final int login_title=0x7f06000d;
-        public static final int login_username=0x7f06000e;
+        public static final int login_title=0x7f060013;
+        public static final int login_username=0x7f060014;
         /**  toast prompts 
          */
         public static final int msg_loginfail=0x7f060009;
+        public static final int msg_networkerror=0x7f060010;
+        public static final int msg_phoneempty=0x7f06000f;
         public static final int msg_signupfail=0x7f06000c;
+        public static final int msg_signupfailphone=0x7f06000d;
         public static final int msg_signupok=0x7f06000b;
         public static final int msg_signuppasserror=0x7f06000a;
-        public static final int post_comment=0x7f060015;
-        public static final int signup_cellphone=0x7f06001c;
-        public static final int signup_confirm_pass=0x7f06001b;
-        public static final int signup_submit=0x7f06001d;
-        public static final int signup_title=0x7f06001a;
+        public static final int msg_smscodeerror=0x7f060012;
+        public static final int msg_wrongphone=0x7f06000e;
+        public static final int msg_wrongsmscode=0x7f060011;
+        public static final int post_comment=0x7f06001b;
+        public static final int signup_cellphone=0x7f060023;
+        public static final int signup_confirm_pass=0x7f060022;
+        public static final int signup_submit=0x7f060024;
+        public static final int signup_title=0x7f060021;
     }
     public static final class style {
         /** 

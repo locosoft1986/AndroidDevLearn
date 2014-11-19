@@ -170,7 +170,7 @@ public class BaseUi extends Fragment {
 	
 	public void hideLoadBar () {
 		if (showLoadBar) {
-			loadingDialog.hide();
+			loadingDialog.dismiss();
 			showLoadBar = false;
 		}
 	}
@@ -301,7 +301,7 @@ public class BaseUi extends Fragment {
 	}
 	
 	public void onNetworkError (int taskId) {
-		toast(C.err.network);
+		toast(this.getString(R.string.msg_networkerror));
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////
