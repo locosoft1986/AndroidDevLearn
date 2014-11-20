@@ -89,26 +89,26 @@ public final class R {
         /**  settings 
          */
         public static final int config_sign=0x7f060007;
-        public static final int edit_submit=0x7f06001a;
-        public static final int forgot_get_sms=0x7f060026;
-        public static final int forgot_resend=0x7f060028;
-        public static final int forgot_reset_pass=0x7f060027;
-        public static final int forgot_title=0x7f060025;
+        public static final int edit_submit=0x7f06001b;
+        public static final int forgot_get_sms=0x7f060027;
+        public static final int forgot_resend=0x7f060029;
+        public static final int forgot_reset_pass=0x7f060028;
+        public static final int forgot_title=0x7f060026;
         public static final int hello_world=0x7f060002;
-        public static final int hint_cellphone=0x7f06001f;
-        public static final int hint_passconfirm=0x7f06001e;
-        public static final int hint_password=0x7f06001d;
-        public static final int hint_smscode=0x7f060020;
-        public static final int hint_username=0x7f06001c;
-        public static final int login_forgot=0x7f060017;
-        public static final int login_password=0x7f060015;
-        public static final int login_remember=0x7f060016;
-        public static final int login_signup=0x7f060018;
-        public static final int login_submit=0x7f060019;
+        public static final int hint_cellphone=0x7f060020;
+        public static final int hint_passconfirm=0x7f06001f;
+        public static final int hint_password=0x7f06001e;
+        public static final int hint_smscode=0x7f060021;
+        public static final int hint_username=0x7f06001d;
+        public static final int login_forgot=0x7f060018;
+        public static final int login_password=0x7f060016;
+        public static final int login_remember=0x7f060017;
+        public static final int login_signup=0x7f060019;
+        public static final int login_submit=0x7f06001a;
         /**  UI labels
          */
-        public static final int login_title=0x7f060013;
-        public static final int login_username=0x7f060014;
+        public static final int login_title=0x7f060014;
+        public static final int login_username=0x7f060015;
         /**  toast prompts 
          */
         public static final int msg_loginfail=0x7f060009;
@@ -119,13 +119,14 @@ public final class R {
         public static final int msg_signupok=0x7f06000b;
         public static final int msg_signuppasserror=0x7f06000a;
         public static final int msg_smscodeerror=0x7f060012;
+        public static final int msg_smscodetimesup=0x7f060013;
         public static final int msg_wrongphone=0x7f06000e;
         public static final int msg_wrongsmscode=0x7f060011;
-        public static final int post_comment=0x7f06001b;
-        public static final int signup_cellphone=0x7f060023;
-        public static final int signup_confirm_pass=0x7f060022;
-        public static final int signup_submit=0x7f060024;
-        public static final int signup_title=0x7f060021;
+        public static final int post_comment=0x7f06001c;
+        public static final int signup_cellphone=0x7f060024;
+        public static final int signup_confirm_pass=0x7f060023;
+        public static final int signup_submit=0x7f060025;
+        public static final int signup_title=0x7f060022;
     }
     public static final class style {
         /** 

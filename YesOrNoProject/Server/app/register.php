@@ -15,7 +15,7 @@ $ctime = date("Y-m-d");//date("Y-m-d H:i:s");
 $con = DatabaseConnect();
 $rowCount = 0;
 
-//check if the user name is already exists
+//check if the user name already exists
 $sql = "select * from `customer` where name = ?";
 $stmt = $con->prepare($sql);
 $stmt->bind_param('s', $uname);
@@ -34,7 +34,7 @@ if (!empty($rowCount))
     renderJson('14002', 'Signup failed,user name exists');
 }
 
-//check if the user cell phone is already exists
+//check if the user cell phone already exists
 $sql = "select * from `customer` where phonenum = ?";
 $stmt = $con->prepare($sql);
 $stmt->bind_param('s', $uphone);

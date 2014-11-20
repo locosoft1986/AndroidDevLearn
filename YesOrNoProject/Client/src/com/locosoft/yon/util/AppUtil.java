@@ -47,7 +47,12 @@ public class AppUtil {
 			byte[] bytes = algorithm.digest();
 			StringBuilder hexString = new StringBuilder();
 			for (byte b : bytes) {
-				hexString.append(Integer.toHexString(0xFF & b));
+				int tmpByte = 0xFF & b;
+				if (tmpByte < 0x10)
+				{
+					hexString.append("0");
+				}
+				hexString.append(Integer.toHexString(tmpByte));
 			}
 			return hexString.toString();
 		}

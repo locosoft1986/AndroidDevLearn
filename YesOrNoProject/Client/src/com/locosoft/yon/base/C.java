@@ -11,9 +11,8 @@ public final class C {
 		public static final String images			= base + "/images";
 	}
 	
-	
 	public static final class api {
-		public static final String base				= "http://10.0.16.43/yon";
+		public static final String base				= "http://10.0.16.16:81/yon";
 		public static final String postList			= "/posts.php";
 		public static final String login			= "/login.php";
 		public static final String register			= "/register.php";
@@ -45,7 +44,7 @@ public final class C {
 		public static final int smscode_min		=	5;
 		public static final int smscode_max		=	10;
 		public static final int smscode_max_time=	300;//300s = 5min
-		public static final int smscode_wait_time=	60;//60s
+		public static final int smscode_wait_time=	30;//30s
 
 	}
 	

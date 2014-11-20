@@ -24,6 +24,7 @@
 	<string name="msg_networkerror">网络不给力，请稍后再试</string>
 	<string name="msg_wrongsmscode">验证码错误</string>
 	<string name="msg_smscodeerror">验证码不能为空，必须大于%d位</string>
+	<string name="msg_smscodetimesup">验证码过期，请重新获取</string>
 	<!-- UI labels-->
 	<string name="login_title">用户登录</string>
 	<string name="login_username">用户名</string>

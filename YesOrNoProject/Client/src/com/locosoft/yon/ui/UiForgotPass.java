@@ -50,18 +50,16 @@ public class UiForgotPass extends BaseUi {
 		settings = this.getActivity().getPreferences(Context.MODE_PRIVATE);
 		mRemainSMSCount = settings.getInt("smsremain", 0);
 		mSMSCodeMd5Answer = settings.getString("smsanswer", "");
-		long prevSysTime = settings.getLong("smssystime", 0);
 		mPrevSuccessedSysTime = settings.getLong("smssuctime", 0);
 		String prevPhone = settings.getString("smsphone", "");
 		long curSysTime = System.currentTimeMillis();
-		int sysTimeDiff = (int) ((curSysTime - prevSysTime) / 1000.0f);
 		int sysSucTimeDiff = (int) ((curSysTime - mPrevSuccessedSysTime) / 1000.0f);
 		
 		if (mRemainSMSCount > 0) {
 						
 
 			
-			if (sysTimeDiff > mRemainSMSCount)
+			if (sysSucTimeDiff > mRemainSMSCount)
 			{
 				BtnGetSMSCode.setEnabled(true);
 				BtnGetSMSCode.setText(this.getString(R.string.forgot_get_sms));
@@ -70,7 +68,7 @@ public class UiForgotPass extends BaseUi {
 			}
 			else
 			{
-				mRemainSMSCount -= sysTimeDiff;
+				mRemainSMSCount -= sysSucTimeDiff;
 				BtnGetSMSCode.setEnabled(false);
 				BtnGetSMSCode.setText(
 						String.format(
@@ -100,17 +98,33 @@ public class UiForgotPass extends BaseUi {
 			public void onClick(View v) {
 				switch (v.getId()) {
 					case R.id.app_forgot_btn_get_sms : 
-						BtnGetSMSCode.setEnabled(false);
+						
 						doTaskGetSMS();
 						
 						break;
 					case R.id.app_forgot_btn_reset_pass:
+					{
+						long curSysTime = System.currentTimeMillis();
+						int sysSucTimeDiff = (int) ((curSysTime - mPrevSuccessedSysTime) / 1000.0f);
+						//The previous sms code is too old. Hint user to get it again.
+						if(sysSucTimeDiff >= C.custmerVail.smscode_max_time)
+						{
+							mSMSCodeMd5Answer = "";
+							toast(
+									UiForgotPass.this.getString(R.string.msg_smscodetimesup));
+							break;
+						}
+						
 						if(mEditSMSCode.length() >= C.custmerVail.smscode_min)
 						{
 							String strTmpMD5 = AppUtil.md5(mEditSMSCode.getText().toString());
 							if (strTmpMD5.equals(mSMSCodeMd5Answer))
 							{
-								//TODO:Go to reset password activity
+								mSMSCodeMd5Answer = "";
+								String strCurPhone = mEditPhone.getText().toString();
+								mEditPhone.setText("");
+								//TODO:Go to reset password activity using param "strCurPhone"
+								toast("TODO:Go to reset password activity");
 								//forward();
 							}
 							else
@@ -142,8 +156,10 @@ public class UiForgotPass extends BaseUi {
 							mEditSMSCode.setError(ssbuilder);
 							toast(eString);
 						}
+					}
 
-						break;
+
+					break;
 
 				}
 			}
@@ -191,11 +207,14 @@ public class UiForgotPass extends BaseUi {
 			app.setLong(System.currentTimeMillis());
 			HashMap<String, String> urlParams = new HashMap<String, String>();
 			urlParams.put("phone", mEditPhone.getText().toString());
+			
 			try {
 				this.doTaskAsync(C.task.getSms, C.api.getSms, urlParams);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			mBtnGetSMSCode.setEnabled(false);
 		}
 		else
 		{
@@ -208,6 +227,7 @@ public class UiForgotPass extends BaseUi {
 			ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
 			mEditPhone.setError(ssbuilder);
 			toast(eString);
+			mBtnGetSMSCode.setEnabled(true);
 		}
 	}
 	
@@ -219,7 +239,6 @@ public class UiForgotPass extends BaseUi {
 		editor.putString("smsphone", mEditPhone.getText().toString());
 		editor.putString("smsanswer", mSMSCodeMd5Answer);
 		editor.putInt("smsremain", mRemainSMSCount);
-		editor.putLong("smssystime", System.currentTimeMillis());
 		editor.putLong("smssuctime", mPrevSuccessedSysTime);
 		editor.commit();
 		
