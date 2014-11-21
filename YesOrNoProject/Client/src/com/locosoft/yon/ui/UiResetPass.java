@@ -7,9 +7,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.locosoft.yon.R;
+import com.locosoft.yon.base.BaseAuth;
 import com.locosoft.yon.base.BaseMessage;
 import com.locosoft.yon.base.BaseUi;
 import com.locosoft.yon.base.C;
@@ -25,23 +23,20 @@ import com.locosoft.yon.util.CustomerTextFieldFocusListener;
 import com.locosoft.yon.util.CustomerTextFilter;
 import com.locosoft.yon.util.OnTextLengthChangedListener;
 
-public class UiSignup extends BaseUi {
-
-	private EditText mEditName;
+public class UiResetPass extends BaseUi {
+	private EditText mEditOldPass;
 	private CustomerTextFilter mTextFilter;
 	private EditText mEditPass;
 	private EditText mEditConfirmPass;
-	private EditText mEditCellphone;
-	private AlertDialog.Builder mSignupOkAlertBuilder;
-	private AlertDialog mSignupOkAlert;
-	
+	private AlertDialog.Builder mResetOkAlertBuilder;
+	private AlertDialog mResetOkAlert;
+
 	
 	@Override
 	public void onAttach(Activity activity) 
 	{
 		super.onAttach(activity);	
 		mTextFilter = new CustomerTextFilter();
-
 	}
 	
 	@Override
@@ -49,20 +44,30 @@ public class UiSignup extends BaseUi {
 			ViewGroup container, Bundle savedInstanceState)
 	{	
 	
-		rootView = inflater.inflate(R.layout.ui_signup, null);
+		rootView = inflater.inflate(R.layout.ui_resetpass, null);
 		
 		// remember password
-		mEditName = (EditText) rootView.findViewById(R.id.app_signup_edit_name);
-		mEditPass = (EditText) rootView.findViewById(R.id.app_signup_edit_pass);
-		mEditConfirmPass = (EditText) rootView.findViewById(R.id.app_signup_edit_confirm_pass);
-		mEditCellphone = (EditText) rootView.findViewById(R.id.app_signup_edit_cellphone);
-		final Button submitBtn = (Button) rootView.findViewById(R.id.app_signup_btn_submit);
+		mEditOldPass = (EditText) rootView.findViewById(R.id.app_reset_edit_oldpass);
+		
+		if (BaseAuth.isLogin())
+		{
+			mEditOldPass.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			mEditOldPass.setVisibility(View.GONE);
+		}
+		
+		
+		mEditPass = (EditText) rootView.findViewById(R.id.app_reset_edit_pass);
+		mEditConfirmPass = (EditText) rootView.findViewById(R.id.app_reset_edit_confirm_pass);
+
+		final Button submitBtn = (Button) rootView.findViewById(R.id.app_reset_btn_submit);
 		submitBtn.setEnabled(false);
 		
-		final EditText signupName = mEditName;
+		final EditText oldpass = mEditOldPass;
 		final EditText signupPass = mEditPass;
 		final EditText confirmPass = mEditConfirmPass;
-		final EditText cellphone = mEditCellphone;
 		
 		final OnTextLengthChangedListener textLengthChangedListener 
 			= new  OnTextLengthChangedListener()
@@ -70,10 +75,9 @@ public class UiSignup extends BaseUi {
 				@Override
 				public void onTextLengthChanged()
 				{
-					if(signupName.length() >= C.custmerVail.username_min
+					if( (oldpass.length() >= C.custmerVail.password_min || !BaseAuth.isLogin())
 							&& signupPass.length() >= C.custmerVail.password_min
-							&& confirmPass.length() >= C.custmerVail.password_min
-							&& cellphone.length() >= C.custmerVail.cellphone_min)
+							&& confirmPass.length() >= C.custmerVail.password_min)
 					{
 						submitBtn.setEnabled(true);
 						
@@ -87,10 +91,9 @@ public class UiSignup extends BaseUi {
 
 		mTextFilter.setTextLengthChangedListener(textLengthChangedListener);
 		
-		mEditName.addTextChangedListener(mTextFilter);
+		mEditOldPass.addTextChangedListener(mTextFilter);
 		mEditPass.addTextChangedListener(mTextFilter);
 		mEditConfirmPass.addTextChangedListener(mTextFilter);
-		mEditCellphone.addTextChangedListener(mTextFilter);
 		
 	
 		
@@ -99,52 +102,47 @@ public class UiSignup extends BaseUi {
 			@Override
 			public void onClick(View v) {
 				switch (v.getId()) {
-					case R.id.app_signup_btn_submit : 
-						doTaskSignup();
+					case R.id.app_reset_btn_submit : 
+						doTaskResetPass();
 						break;
 
 				}
 			}
 		};
-		rootView.findViewById(R.id.app_signup_btn_submit).setOnClickListener(mOnClickListener);
+		rootView.findViewById(R.id.app_reset_btn_submit).setOnClickListener(mOnClickListener);
 		
 
 
 		
-		mEditName.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
+		mEditOldPass.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
 					this.getContext(),
-					R.string.login_username,
+					R.string.reset_oldpass,
 					InputType.TYPE_CLASS_TEXT,
 					mTextFilter
 				));
 		mEditPass.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
 				this.getContext(),
-				R.string.login_password,
+				R.string.reset_newpass,
 				InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD,
 				mTextFilter
 			));
 		mEditConfirmPass.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
 				this.getContext(),
-				R.string.signup_confirm_pass,
+				R.string.reset_newpassconfirm,
 				InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD,
 				mTextFilter
 			));
-		mEditCellphone.setOnFocusChangeListener(new CustomerTextFieldFocusListener(
-				this.getContext(),
-				R.string.signup_cellphone,
-				InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_PHONE,
-				mTextFilter
-			));
+
 		
 		
-		mSignupOkAlertBuilder = new AlertDialog.Builder(this.getContext());
-		mSignupOkAlertBuilder.setCancelable(false);
-		mSignupOkAlertBuilder.setMessage(
+		mResetOkAlertBuilder = new AlertDialog.Builder(this.getContext());
+		mResetOkAlertBuilder.setCancelable(false);
+		mResetOkAlertBuilder.setMessage(
 				this.getContext()
 				.getResources()
-				.getString(R.string.msg_signupok));
+				.getString(R.string.msg_resetpassok));
         
-		mSignupOkAlertBuilder.setPositiveButton(
+		mResetOkAlertBuilder.setPositiveButton(
 				this.getContext()
 					.getResources()
 					.getString(R.string.btn_confirm)
@@ -167,16 +165,29 @@ public class UiSignup extends BaseUi {
 	
 
 	
-	private void doTaskSignup() {
+	private void doTaskResetPass() {
+		//if the user has already logged in, 
+		//check the old pass and the pass in customer object are equal.
+		if(BaseAuth.isLogin() 
+				&& !mEditOldPass.getText().toString()
+					.equals(BaseAuth.getCustomer().getPass()))
+		{
+			//if not warn user
+			String eString = 
+					this.getString(R.string.msg_resetoldpasserror);
+			
+			displayEditTextError(mEditConfirmPass, eString);
+			return;
+		}
 		
+
 		if (mEditPass.getText().toString().equals(mEditConfirmPass.getText().toString())) {
 			app.setLong(System.currentTimeMillis());
 			HashMap<String, String> urlParams = new HashMap<String, String>();
-			urlParams.put("name", mEditName.getText().toString());
-			urlParams.put("pass", mEditPass.getText().toString());
-			urlParams.put("phone", mEditCellphone.getText().toString());
+			urlParams.put("phone", BaseAuth.getCustomer().getPhoneNum());
+			urlParams.put("pass", mEditPass.getText().toString());			
 			try {
-				this.doTaskAsync(C.task.register, C.api.register, urlParams);
+				this.doTaskAsync(C.task.resetPass, C.api.resetPass, urlParams);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -204,33 +215,13 @@ public class UiSignup extends BaseUi {
 				if(C.retCode.retDone.equalsIgnoreCase(
 						message.getCode()))
 				{
-					mSignupOkAlert = mSignupOkAlertBuilder.create();
-					mSignupOkAlert.show();
+					mResetOkAlert = mResetOkAlertBuilder.create();
+					mResetOkAlert.show();
 					
 				}
 				else 
 				{
-					String eString;
-
-					
-					if(C.retCode.retSignupName.equalsIgnoreCase(
-							message.getCode()))
-					{
-
-						eString = 
-								this.getString(R.string.msg_signupfail);						
-							
-						displayEditTextError(mEditName, eString);
-					}
-					else
-					{
-						eString = 
-								this.getString(R.string.msg_signupfailphone);
-		
-						displayEditTextError(mEditCellphone, eString);
-					}
-					
-					toast(eString);
+					toast(this.getString(R.string.msg_networkerror));
 				}
 					
 

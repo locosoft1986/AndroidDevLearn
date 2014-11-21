@@ -3,19 +3,25 @@ package com.locosoft.yon.base;
 import java.util.HashMap;
 
 import com.locosoft.yon.R;
+import com.locosoft.yon.ui.UiForgotPass;
 import com.locosoft.yon.util.AppCache;
 import com.locosoft.yon.util.AppUtil;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class BaseUi extends Fragment {
@@ -27,6 +33,9 @@ public class BaseUi extends Fragment {
 	protected boolean showLoadBar = false;
 	protected boolean showDebugMsg = true;
 	protected ProgressDialog loadingDialog;
+	
+	protected int animationInId = R.animator.slide_in_right;
+	protected int animationOutId = R.animator.slide_out_left;
 
 	
 	// Called when the Fragment is attached to its parent Activity.
@@ -133,6 +142,41 @@ public class BaseUi extends Fragment {
 		intent.putExtras(params);
 		this.startActivity(intent);
 		this.getActivity().finish();
+	}
+	
+	public void setChangeAnimations(int animIn, int animOut)
+	{
+		animationInId = animIn;
+		animationOutId = animOut;
+	}
+	
+	public void change(int srcFragId, BaseUi destUi)
+	{
+		FragmentManager fm = getFragmentManager();
+		FragmentTransaction ft = fm.beginTransaction();
+		ft.replace(srcFragId, destUi);
+		ft.setCustomAnimations(animationInId, animationOutId);
+		ft.commit();
+	}
+	
+	public void change(int srcFragId, BaseUi destUi, Bundle params)
+	{
+		FragmentManager fm = getFragmentManager();
+		FragmentTransaction ft = fm.beginTransaction();
+		destUi.setArguments(params);
+		ft.replace(srcFragId, destUi);
+		ft.setCustomAnimations(animationInId, animationOutId);
+		ft.commit();
+	}
+	
+	public void displayEditTextError(EditText v, String strMessage)
+	{
+		ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
+		SpannableStringBuilder ssbuilder 
+			= new SpannableStringBuilder(strMessage);
+		
+		ssbuilder.setSpan(fgcSpan, 0, strMessage.length(), 0);
+		v.setError(ssbuilder);
 	}
 	
 	public Context getContext () {

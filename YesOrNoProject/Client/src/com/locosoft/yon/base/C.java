@@ -1,12 +1,14 @@
 package com.locosoft.yon.base;
 
+import android.os.Environment;
+
 public final class C {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	// core settings (important)
 	
 	public static final class dir {
-		public static final String base				= "/sdcard/yon";
+		public static final String base				=  Environment.getExternalStorageDirectory().getPath();
 		public static final String faces			= base + "/faces";
 		public static final String images			= base + "/images";
 	}
@@ -24,6 +26,7 @@ public final class C {
 		public static final String customerEdit		= "/customerEdit.php";
 		public static final String notice			= "/notice.php";
 		public static final String getSms			= "/sms.php";
+		public static final String resetPass		= "/resetPass.php";
 
 	}
 	
@@ -33,6 +36,7 @@ public final class C {
 		public static final String critical	=	"YonApp Error";
 
 	}
+	
 	
 	public static final class custmerVail {
 		public static final int username_min	=	5;
@@ -60,6 +64,7 @@ public final class C {
 		public static final int customerEdit		= 1009;
 		public static final int notice				= 1010;
 		public static final int getSms				= 1011;
+		public static final int resetPass			= 1012;
 	}
 	
 	public static final class err {

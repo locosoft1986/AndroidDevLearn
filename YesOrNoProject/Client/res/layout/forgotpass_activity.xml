@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-	<fragment android:name="com.locosoft.yon.ui.UiForgotPass"
-		android:id="@+id/app_ui_forgotpass"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_weight="1"
-	/>
+    <LinearLayout android:id="@+id/app_forgotpass_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    </LinearLayout>
+
 </LinearLayout>

@@ -56,6 +56,7 @@ public class UiLogin extends BaseUi {
 	
 		rootView = inflater.inflate(R.layout.ui_login, null);
 		
+		BaseAuth.setLogin(false);
 		// remember password
 		mEditName = (EditText) rootView.findViewById(R.id.app_login_edit_name);
 		mEditPass = (EditText) rootView.findViewById(R.id.app_login_edit_pass);
@@ -159,8 +160,14 @@ public class UiLogin extends BaseUi {
 						overlay(SignupActivity.class);
 						break;
 					case R.id.app_login_btn_forgot:
-						overlay(ForgotPassActivity.class);
+					{
+						//It is triggered by login UI, so inform the Forgot Password UI to clear the form
+						//and the sms code that was previously received
+						Bundle b = new Bundle();
+						b.putBoolean("resetForm", true);
+						overlay(ForgotPassActivity.class, b);
 						break;
+					}
 				}
 			}
 		};

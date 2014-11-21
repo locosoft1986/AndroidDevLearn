@@ -25,6 +25,9 @@
 	<string name="msg_wrongsmscode">验证码错误</string>
 	<string name="msg_smscodeerror">验证码不能为空，必须大于%d位</string>
 	<string name="msg_smscodetimesup">验证码过期，请重新获取</string>
+	<string name="msg_resetpassok">重置成功,确认后返回登录界面</string>
+	<string name="msg_resetoldpasserror">旧密码错误</string>
+	
 	<!-- UI labels-->
 	<string name="login_title">用户登录</string>
 	<string name="login_username">用户名</string>
@@ -34,9 +37,15 @@
 	<string name="login_signup">注册</string>
 	<string name="login_submit">登录</string>
 	<string name="edit_submit">保存</string>
-	<string name="post_comment">评论</string>
+	<string name="post_comment">评论</string>	
+	<string name="reset_title">重置密码</string>
+	<string name="reset_oldpass">旧密码</string>
+	<string name="reset_newpass">新密码</string>
+	<string name="reset_newpassconfirm">确认新密码</string>
+	<string name="reset_submit">更新密码</string>
 	
 	<string name="hint_username">请输入用户名</string>
+	<string name="hint_oldpass">请输入旧密码</string>
 	<string name="hint_password">请输入密码</string>
 	<string name="hint_passconfirm">请输入确认密码</string>
 	<string name="hint_cellphone">请输入有效的手机号码</string>

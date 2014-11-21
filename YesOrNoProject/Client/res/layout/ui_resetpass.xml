@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<TextView 
+		android:layout_width="wrap_content" 
+		android:textAppearance="?android:attr/textAppearanceLarge" 
+		android:layout_height="wrap_content" 
+		android:layout_gravity="center_horizontal" 
+		android:text="@string/reset_title" 
+		android:layout_margin="20dip" 
+		android:textSize="10pt"/>
+	<RelativeLayout 
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content">
+
+		<EditText 
+		    android:id="@+id/app_reset_edit_oldpass"
+			android:layout_width="match_parent" 
+			android:layout_height="wrap_content" 
+			android:gravity="center"
+			android:inputType="text" 
+			android:textSize="9pt" 
+			android:textAppearance="?android:attr/textAppearanceLarge" 
+			android:hint="@string/hint_oldpass"
+			android:text="@string/reset_oldpass" 
+			android:textColor="@color/dark_gray"
+			/>
+	</RelativeLayout>
+	<RelativeLayout 
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content">
+
+		<EditText 
+		    android:id="@+id/app_reset_edit_pass"
+			android:layout_width="match_parent" 
+			android:layout_height="wrap_content" 
+			android:gravity="center"
+			android:inputType="text" 
+			android:textSize="9pt" 
+			android:textAppearance="?android:attr/textAppearanceLarge" 
+			android:hint="@string/hint_password"
+			android:text="@string/reset_newpass" 
+			android:textColor="@color/dark_gray"
+			/>
+	</RelativeLayout>
+	<RelativeLayout 
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content">
+
+		<EditText 
+		    android:id="@+id/app_reset_edit_confirm_pass"
+			android:layout_width="match_parent" 
+			android:layout_height="wrap_content" 
+			android:gravity="center"
+			android:inputType="text" 
+			android:textSize="9pt" 
+			android:textAppearance="?android:attr/textAppearanceLarge" 
+			android:hint="@string/hint_passconfirm"
+			android:text="@string/reset_newpassconfirm" 
+			android:textColor="@color/dark_gray"
+			/>
+	</RelativeLayout>
+	
+	<Button 
+		android:id="@+id/app_reset_btn_submit" 
+		android:text="@string/reset_submit" 
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content" 
+		android:focusable="true"/>
+</LinearLayout>

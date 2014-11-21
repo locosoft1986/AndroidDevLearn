@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.locosoft.yon.R;
+import com.locosoft.yon.base.BaseAuth;
 import com.locosoft.yon.base.BaseMessage;
 import com.locosoft.yon.base.BaseUi;
 import com.locosoft.yon.base.C;
@@ -31,7 +32,8 @@ public class UiForgotPass extends BaseUi {
 	private String mSMSCodeMd5Answer;
 	private CountDownTimer mCntDownTimer = null;
 	private long mPrevSuccessedSysTime = 0;
-	
+	//reset the sms code answer into invaild state if true.
+	private boolean mResetFormOnStart = false;
 	
 
 	@Override
@@ -40,6 +42,11 @@ public class UiForgotPass extends BaseUi {
 	{	
 	
 		rootView = inflater.inflate(R.layout.ui_forgotpass, null);
+		Bundle b = this.getArguments();
+		if (b != null)
+		{
+			mResetFormOnStart = b.getBoolean("reset");
+		}
 		
 		// remember password
 		mEditPhone = (EditText) rootView.findViewById(R.id.app_forgot_cellphone);
@@ -85,7 +92,7 @@ public class UiForgotPass extends BaseUi {
 		}
 		//if the difference between the current time and the previous sms time is 
 		//greater than ?? s, then the previous sms code is invaild
-		if(sysSucTimeDiff >= C.custmerVail.smscode_max_time)
+		if(sysSucTimeDiff >= C.custmerVail.smscode_max_time || mResetFormOnStart)
 		{
 			prevPhone = "";
 			mSMSCodeMd5Answer = "";
@@ -121,22 +128,20 @@ public class UiForgotPass extends BaseUi {
 							if (strTmpMD5.equals(mSMSCodeMd5Answer))
 							{
 								mSMSCodeMd5Answer = "";
-								String strCurPhone = mEditPhone.getText().toString();
-								mEditPhone.setText("");
-								//TODO:Go to reset password activity using param "strCurPhone"
-								toast("TODO:Go to reset password activity");
-								//forward();
+								BaseAuth.getCustomer()
+									.setPhoneNum(mEditPhone.getText().toString());
+
+								// Go to reset password form
+								change(R.id.app_forgotpass_container, new UiResetPass());
+								break;
 							}
 							else
 							{
 								String eString = 
 										UiForgotPass.this.getString(R.string.msg_wrongsmscode);
-								ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
-								SpannableStringBuilder ssbuilder 
-									= new SpannableStringBuilder(eString);
 								
-								ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
-								mEditSMSCode.setError(ssbuilder);
+								displayEditTextError(mEditSMSCode, eString);
+					
 								toast(eString);
 								
 							}
@@ -147,13 +152,9 @@ public class UiForgotPass extends BaseUi {
 							String eString = String.format(
 									UiForgotPass.this.getString(R.string.msg_smscodeerror)
 									,C.custmerVail.smscode_min);
+									
+							displayEditTextError(mEditSMSCode, eString);
 							
-							ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
-							SpannableStringBuilder ssbuilder 
-								= new SpannableStringBuilder(eString);
-							
-							ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
-							mEditSMSCode.setError(ssbuilder);
 							toast(eString);
 						}
 					}
@@ -220,13 +221,11 @@ public class UiForgotPass extends BaseUi {
 		{
 			String eString = 
 					this.getString(R.string.msg_phoneempty);
-			ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
-			SpannableStringBuilder ssbuilder 
-				= new SpannableStringBuilder(eString);
-			
-			ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
-			mEditPhone.setError(ssbuilder);
+
+			displayEditTextError(mEditPhone, eString);
+
 			toast(eString);
+			
 			mBtnGetSMSCode.setEnabled(true);
 		}
 	}
@@ -272,12 +271,8 @@ public class UiForgotPass extends BaseUi {
 					
 					String eString = this.getString(R.string.msg_wrongphone);
 					
-					ForegroundColorSpan fgcSpan = new ForegroundColorSpan(R.color.red);
-					SpannableStringBuilder ssbuilder 
-						= new SpannableStringBuilder(eString);
-					
-					ssbuilder.setSpan(fgcSpan, 0, eString.length(), 0);
-					mEditPhone.setError(ssbuilder);
+					displayEditTextError(mEditPhone, eString);
+
 					toast(eString);
 				}
 
