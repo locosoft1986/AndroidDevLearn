@@ -1,0 +1,129 @@
+
+ul, li {
+    list-style: none;
+}
+
+body, dl, dd, dt, ul, div, html, pm form {
+    margin: 0;
+    padding: 0;
+}
+
+ul, menu, dir {
+    display: block;
+}
+
+.templates {
+    display: hide;
+}
+
+.tl_list {
+    background: #ebedf0;
+    overflow: hidden;
+}
+
+.tl_shadow, .tl_gap {
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.ti_item {
+    display: block;
+    padding: 10px 0 0;
+}
+.ti_title {
+    word-break: break-all;
+    color: #262626;
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 5px;
+    padding: 0 10px;
+}
+.ti_abs {
+    color: #777;
+    font-size: 14px;
+    line-height: 23px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0 10px;
+}
+.medias_wrap {
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+.medias_item {
+    width:32%;
+    margin-right: 2%;
+    float: left;
+    line-height: 0;
+}
+.medias_img_r {
+    width: 100%;
+    -webkit-transition: opacity 500ms ease-out 500ms;
+    opacity: 0;
+}
+
+.ti_author_time {
+    line-height: 34px;
+    height: 34px;
+    padding: 0 10px;
+    float:left;
+}
+
+.ti_author {
+    color: #626466;
+    font-size: 14px;
+}
+
+.ti_time {
+    margin-left: 6px;
+    color: #abaeb2;
+    font-size: 12px;
+}
+
+.ti_reply {
+    float: right;
+}
+
+.ti_func_btn {
+    font-size: 12px;
+    line-height: 34px;
+    height: 34px;
+    padding: 0;
+    color: #7a7c80;
+    text-align: center;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.btn_like_icon {
+    display: inline-block;
+    width: 20px;
+    height: 28px;
+    vertical-align: top;
+    background-image: url(/image/new_sglobal_icon.png);
+    background-repeat: no-repeat;
+    background-size: 70px auto;
+    background-position: 0 -661px;
+}
+
+.btn_like {
+    font-size: 12px;
+    text-align: center;
+}
+
+.btn_reply .btn_icon {
+    background: url(/image/new_frs_icon.png) no-repeat 0 -976px;
+    background-size: 33px auto;
+    display: inline-block;
+    padding-left: 20px;
+}
+
+.clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
