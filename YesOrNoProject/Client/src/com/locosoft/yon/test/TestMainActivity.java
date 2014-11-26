@@ -57,7 +57,11 @@ public class TestMainActivity extends Activity {
     			startActivity(intent);
     			break;
     		}
+    	case R.id.webViewTest:
+		{
 
+			break;
+		}
     		
     	case R.id.exitTestApp:
     		{

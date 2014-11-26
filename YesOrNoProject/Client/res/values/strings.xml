@@ -26,7 +26,11 @@
 	<string name="msg_smscodeerror">验证码不能为空，必须大于%d位</string>
 	<string name="msg_smscodetimesup">验证码过期，请重新获取</string>
 	<string name="msg_resetpassok">重置成功,确认后返回登录界面</string>
+	<string name="msg_resetpassfail">重置失败，服务器繁忙</string>
 	<string name="msg_resetoldpasserror">旧密码错误</string>
+	
+	<string name="msg_uploads_disabled">File uploads are disabled.</string>
+	<string name="msg_choose_upload">Choose file for upload</string>
 	
 	<!-- UI labels-->
 	<string name="login_title">用户登录</string>

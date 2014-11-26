@@ -23,7 +23,14 @@
 		android:layout_below="@+id/startLoginTest" 
 		android:text="" />
     
-    
+    <Button
+        android:id="@+id/webViewTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/testCurrentUser"
+        android:text="WebView Test"
+        android:onClick="onMenuClicked"
+    />
     
     <Button
         android:id="@+id/exitTestApp"

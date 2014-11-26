@@ -195,9 +195,9 @@ public class UiResetPass extends BaseUi {
 		else
 		{
 			String eString = 
-					this.getString(R.string.msg_signuppasserror);
+					this.getString(R.string.msg_resetpassfail);
 			
-			displayEditTextError(mEditConfirmPass, eString);
+			toast(eString);
 
 		}
 	}
