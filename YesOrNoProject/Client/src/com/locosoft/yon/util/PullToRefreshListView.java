@@ -1,5 +1,6 @@
-package eu.erikw;
+package com.locosoft.yon.util;
 
+import com.locosoft.yon.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
