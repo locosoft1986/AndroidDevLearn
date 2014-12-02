@@ -48,7 +48,7 @@ public final class R {
         public static final int ptr_pulltorefresh_arrow=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0020;
+        public static final int action_settings=0x7f0a0021;
         public static final int app_forgot_btn_get_sms=0x7f0a000f;
         public static final int app_forgot_btn_reset_pass=0x7f0a0010;
         public static final int app_forgot_cellphone=0x7f0a000d;
@@ -80,6 +80,7 @@ public final class R {
         public static final int ptr_id_textwrapper=0x7f0a0005;
         public static final int startLoginTest=0x7f0a0009;
         public static final int testCurrentUser=0x7f0a000a;
+        public static final int webTestView=0x7f0a0020;
         public static final int webViewTest=0x7f0a000b;
     }
     public static final class layout {
@@ -92,6 +93,7 @@ public final class R {
         public static final int ui_login=0x7f030006;
         public static final int ui_resetpass=0x7f030007;
         public static final int ui_signup=0x7f030008;
+        public static final int webviewtest=0x7f030009;
     }
     public static final class menu {
         public static final int test_main=0x7f090000;
