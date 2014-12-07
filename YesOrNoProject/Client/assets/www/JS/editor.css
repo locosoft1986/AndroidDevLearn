@@ -1,0 +1,39 @@
+.btm_container {
+    display: block;
+    position: fixed;
+    bottom: 2px;
+    width:100%;
+    height: 120px;
+}
+
+.ed_text {
+    float: left;
+    width:90%;
+    height: 100%;
+}
+
+.ed_editor {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    padding: 10px 0 0;
+}
+
+.ed_btn {
+    font-size: 14px;
+    width: 100%;
+    height: 34px;
+    border-width: 2px;
+    border-color: #626466;
+    background-color: #99FFFF;
+    text-align: center;        
+    display: inline-block;
+    line-height: 34px; 
+}
+
+.ed_controls {
+    float: right;
+    width: 10%;
+    
+}
+
