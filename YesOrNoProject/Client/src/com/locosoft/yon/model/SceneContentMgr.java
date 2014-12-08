@@ -31,6 +31,11 @@ public class SceneContentMgr {
 	{
 		mNowEditingSceneId = sceneId;
 		mNowEditingPageId = pageId;
+		
+	}
+	
+	public void clearPageContents()
+	{
 		mNowEditPageContents.clear();
 	}
 	
