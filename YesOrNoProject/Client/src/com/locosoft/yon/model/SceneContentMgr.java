@@ -100,6 +100,20 @@ public class SceneContentMgr {
 		return c.getValue();
 	}
 	
+	public void setContentType(String strKey, String strType)
+	{
+		if(!mNowEditPageContents.containsKey(strKey))
+		{
+			Content c = new Content();
+			c.setKey(strKey);
+			mNowEditPageContents.put(strKey, c);
+		}
+		
+		Content c = (Content) mNowEditPageContents.get(strKey);	
+		c.setType(strType);
+	}
+	
+	
 	public String getContentType(String strKey)
 	{
 		if(!mNowEditPageContents.containsKey(strKey))
