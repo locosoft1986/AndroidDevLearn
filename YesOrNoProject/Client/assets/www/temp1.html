@@ -1,54 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Example</title>
-    <link rel="stylesheet" type="text/css" href="JS/editor.css">
+    <title>Template</title>
     <link rel="stylesheet" type="text/css" href="JS/main.css">
     <script src="jquery/jquery-2.1.0.js" type="text/javascript"></script>
-    <script src="JS/main.js" type="text/javascript"></script>
+    <script src="JS/globalEditorJS.js" type="text/javascript"></script>
+    <script src="JS/contentEditor.js" type="text/javascript"></script>
 </head>
 <body>
-    <div class="btm_container">
-        <div class="ed_text">
-            <textarea  id="texteditor" class="ed_editor" maxlength="120"></textarea>
-        </div>
-        <div class="ed_controls">
-            <div class="ed_btn">
-                OK
-            </div>
-        </div>
-    </div>
-
-
-    <div class="templates">
+<div class="templates">
     <ul class="template commontype">
-
         <li id="postitem" class="tl_shadow ">
             <div class="ti_item">
-                <div class="ti_title">
+                <div id="title_container" class="ti_title">
                     <span id="ptitle">测试中文title</span>
                 </div>
                 <p id="pcontent" class="ti_abs">test texts....</p>
-                <div class="medias_wrap clearfix">
-                    <div class="medias_item">
-                        <img id="pimage" src="image/test1.jpg"/>
-                    </div>
-                </div>
-                <div class="clearfix">
-                    <div class="ti_author_time">
-                        <span id="pauthor" class="ti_author">Author test</span>
-                        <span id="ptime" class="ti_time">11:13</span>
-                    </div>
-                    <div class="ti_reply">
-                        <div class="ti_func_btn ti_btn_like" data-info="{&quot;post_id&quot;:44002,&quot;author_id&quot;:6049,&quot;tid&quot;:2798}" likestatus="0">
-                            <span class="btn_like_icon"></span>
-                            <span id="plikenum">34</span>
-                        </div>
-                        <div class="ti_func_btn btn_reply">
-                            <span id="preplynum" class="btn_icon">977</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </li>
 
