@@ -1,5 +1,5 @@
 
-    function fetchAllCSS(a) {
+    /*function fetchAllCSS(a) {
         var sheets = document.styleSheets, o = {};
         for (var i in sheets) {
             var rules = sheets[i].rules || sheets[i].cssRules;
@@ -29,19 +29,19 @@
             }
         }
         return s;
-    }
+    }*/
     //The map use string as key and value
     //var gElement2idMap = new Object();
     function registerInteractElement(element, id, type)
     {
         var opElement = $(element);
         var valIdElement = $(id);
-        var checkJSInterface = false;
+        var checkJSInterface = (typeof JSInterface != "undefined");
 
         if(opElement !== undefined && valIdElement !== undefined)
         {
             //checkJSInterface = (JSInterface !== undefined);
-            if (type == 3)
+            /*if (type == 3)
             {
                 $d = $(id)[0].contentWindow.document;
                 $d.designMode="on";
@@ -51,7 +51,7 @@
                 
                 var style = fetchAllCSS(valIdElement);
                 $(id).contents().find('body').css(style);
-            }
+            }*/
             if (checkJSInterface)
             {
                 JSInterface.setType(type);
@@ -65,11 +65,11 @@
                             valIdElement.attr('src', strElementValue);
                         }
                         break;
-                    case 3:
+                    /*case 3:
                         {
                             valIdElement.contents().find('body').text(strElementValue);
                         }
-                        break;
+                        break;*/
                     case 0:
                     default:
                         {
